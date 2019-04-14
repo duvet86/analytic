@@ -66,7 +66,7 @@ module.exports = {
   mode: "development",
   // Enable sourcemaps for debugging webpack's output.
   devtool: "cheap-module-source-map",
-  entry: "./packages/root/src/index.tsx",
+  entry: path.resolve(__dirname, "packages/root/src/index.tsx"),
   output: {
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
@@ -220,7 +220,7 @@ module.exports = {
       tslint: true,
       checkSyntacticErrors: true,
       async: true,
-      watch: "./packages/root/src" // optional but improves performance (fewer stat calls)
+      watch: "./packages/root/src/" // optional but improves performance (fewer stat calls)
     }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
@@ -228,8 +228,8 @@ module.exports = {
     new ManifestPlugin({
       fileName: "asset-manifest.json",
       publicPath
-    }),
-    new DuplicatePackageCheckerPlugin()
+    })
+    //new DuplicatePackageCheckerPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

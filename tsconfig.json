@@ -36,7 +36,7 @@
 
     /* Module Resolution Options */
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "baseUrl": "./packages/root/src" /* Base directory to resolve non-absolute module names. */,
+    "baseUrl": "./packages" /* Base directory to resolve non-absolute module names. */,
     //"paths": {
     //"material-ui/*": ["node_modules/matrial-ui/index.d.ts"]
     //} /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
@@ -62,7 +62,15 @@
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "*": ["root/src/*"],
+      "@trimble-items/*": ["trimble-items/src/*"]
+    }
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "packages/**/node_modules",
+    "packages/**/__tests__/"
+  ]
 }
