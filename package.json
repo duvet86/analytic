@@ -1,0 +1,16 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "webpack --config webpack.config.prod.js && node copyPublicFolder",
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "test": "jest --colors"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
