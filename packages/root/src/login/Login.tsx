@@ -1,4 +1,4 @@
-import logo from "login/logo.svg";
+import trimbleLogo from "topbar/trimbleLogo.png";
 
 import React, { ChangeEvent, Component, FormEvent, MouseEvent } from "react";
 
@@ -35,14 +35,6 @@ interface IState {
 
 const styles = ({ spacing: { unit } }: Theme) =>
   createStyles({
-    "@keyframes appLogoSpin": {
-      from: {
-        transform: "rotate(0deg)"
-      },
-      to: {
-        transform: "rotate(360deg)"
-      }
-    },
     container: {
       height: "70%"
     },
@@ -58,10 +50,6 @@ const styles = ({ spacing: { unit } }: Theme) =>
     },
     logoContainer: {
       textAlign: "center"
-    },
-    appLogo: {
-      animation: "appLogoSpin infinite 20s linear",
-      height: "50px"
     },
     errorMessage: {
       marginTop: 10,
@@ -90,13 +78,10 @@ class Login extends Component<IProps, IState> {
         <Grid item md={3} xs={11}>
           <Paper className={classes.paper}>
             <div className={classes.logoContainer}>
-              <img src={logo} className={classes.appLogo} alt="logo" />
+              <img src={trimbleLogo} alt="trimbleLogo" />
             </div>
-            <Typography component="p" align="center">
-              Reactive
-            </Typography>
-            <Typography variant="h5" component="h3" align="center">
-              Connected Mine Analitycs
+            <Typography color="secondary" variant="h5" align="center">
+              Analitycs
             </Typography>
             <form
               className={classes.form}
