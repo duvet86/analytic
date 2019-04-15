@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 
 import { getTokenAsync } from "lib/authApi";
+import { storeToken } from "lib/sessionStorageApi";
 import LoadingContainer from "loading/LoadingContainer";
 import Login from "login/Login";
 
@@ -17,14 +18,6 @@ class LoginContainer extends Component<RouteComponentProps, IState> {
     isInvalidCredentials: false,
     error: undefined
   };
-
-  public componentDidMount() {
-    document.body.style.backgroundColor = "#eee";
-  }
-
-  public componentWillUnmount() {
-    document.body.style.backgroundColor = null;
-  }
 
   public render() {
     const { isLoading, isInvalidCredentials, error } = this.state;
@@ -45,6 +38,7 @@ class LoginContainer extends Component<RouteComponentProps, IState> {
     });
     try {
       const token = await getTokenAsync(username, password);
+      storeToken(token);
       this.props.history.push("/");
     } catch (error) {
       if (error.status === 401) {

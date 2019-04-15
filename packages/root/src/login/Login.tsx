@@ -36,6 +36,10 @@ interface IState {
 const styles = ({ spacing: { unit } }: Theme) =>
   createStyles({
     container: {
+      backgroundColor: "#eee",
+      height: "100%"
+    },
+    loginContainer: {
       height: "70%"
     },
     paper: {
@@ -68,74 +72,79 @@ class Login extends Component<IProps, IState> {
     const { classes, isInvalidCredentials } = this.props;
 
     return (
-      <Grid
-        container
-        alignItems="center"
-        justify="center"
-        className={classes.container}
-        spacing={0}
-      >
-        <Grid item md={3} xs={11}>
-          <Paper className={classes.paper}>
-            <div className={classes.logoContainer}>
-              <img src={trimbleLogo} alt="trimbleLogo" />
-            </div>
-            <Typography color="secondary" variant="h5" align="center">
-              Analitycs
-            </Typography>
-            <form
-              className={classes.form}
-              noValidate
-              onSubmit={this.submitHandler}
-            >
-              <FormControl fullWidth>
-                <InputLabel htmlFor="username">User Name</InputLabel>
-                <Input
-                  id="username"
-                  onChange={this.handleChange("username")}
-                  autoComplete="username"
-                />
-              </FormControl>
-              <FormControl className={classes.passwordControl} fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  id="password"
-                  type={this.state.showPassword ? "text" : "password"}
-                  onChange={this.handleChange("password")}
-                  autoComplete="current-password"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={this.handleClickShowPasssword}
-                        onMouseDown={this.handleMouseDownPassword}
-                      >
-                        {this.state.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
-                fullWidth
-              >
-                Login
-              </Button>
-            </form>
-            {isInvalidCredentials && (
-              <Typography className={classes.errorMessage} variant="subtitle1">
-                Invalid Username or Password
+      <div className={classes.container}>
+        <Grid
+          className={classes.loginContainer}
+          container
+          alignItems="center"
+          justify="center"
+          spacing={0}
+        >
+          <Grid item md={3} xs={11}>
+            <Paper className={classes.paper}>
+              <div className={classes.logoContainer}>
+                <img src={trimbleLogo} alt="trimbleLogo" />
+              </div>
+              <Typography color="secondary" variant="h5" align="center">
+                Analitycs
               </Typography>
-            )}
-          </Paper>
+              <form
+                className={classes.form}
+                noValidate
+                onSubmit={this.submitHandler}
+              >
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="username">User Name</InputLabel>
+                  <Input
+                    id="username"
+                    onChange={this.handleChange("username")}
+                    autoComplete="username"
+                  />
+                </FormControl>
+                <FormControl className={classes.passwordControl} fullWidth>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    id="password"
+                    type={this.state.showPassword ? "text" : "password"}
+                    onChange={this.handleChange("password")}
+                    autoComplete="current-password"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={this.handleClickShowPasssword}
+                          onMouseDown={this.handleMouseDownPassword}
+                        >
+                          {this.state.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  fullWidth
+                >
+                  Login
+                </Button>
+              </form>
+              {isInvalidCredentials && (
+                <Typography
+                  className={classes.errorMessage}
+                  variant="subtitle1"
+                >
+                  Invalid Username or Password
+                </Typography>
+              )}
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 
