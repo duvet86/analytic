@@ -1,6 +1,6 @@
 import trimbleLogo from "topbar/trimbleLogo.png";
 
-import React, { ChangeEvent, Component, FormEvent, MouseEvent } from "react";
+import React, { ChangeEvent, SFC, FormEvent, MouseEvent } from "react";
 
 import {
   createStyles,
@@ -24,13 +24,15 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 interface IProps extends WithStyles<typeof styles> {
   isInvalidCredentials: boolean;
-  submitHandler: (username: string, password: string) => void;
-}
-
-interface IState {
+  submitHandler: (e: FormEvent) => void;
   username: string;
   password: string;
   showPassword: boolean;
+  handleChange: (
+    prop: string
+  ) => (event: ChangeEvent<HTMLInputElement>) => void;
+  handleMouseDownPassword: (e: MouseEvent) => void;
+  handleClickShowPasssword: () => void;
 }
 
 const styles = ({ spacing: { unit } }: Theme) =>
@@ -42,11 +44,11 @@ const styles = ({ spacing: { unit } }: Theme) =>
     loginContainer: {
       height: "70%"
     },
+    title: {
+      color: "#005f9e"
+    },
     paper: {
       padding: unit * 3
-    },
-    form: {
-      marginTop: unit * 3
     },
     passwordControl: {
       marginRight: unit,
@@ -61,113 +63,77 @@ const styles = ({ spacing: { unit } }: Theme) =>
     }
   });
 
-class Login extends Component<IProps, IState> {
-  public readonly state = {
-    username: "",
-    password: "",
-    showPassword: false
-  };
-
-  public render() {
-    const { classes, isInvalidCredentials } = this.props;
-
-    return (
-      <div className={classes.container}>
-        <Grid
-          className={classes.loginContainer}
-          container
-          alignItems="center"
-          justify="center"
-          spacing={0}
-        >
-          <Grid item md={3} xs={11}>
-            <Paper className={classes.paper}>
-              <div className={classes.logoContainer}>
-                <img src={trimbleLogo} alt="trimbleLogo" />
-              </div>
-              <Typography color="secondary" variant="h5" align="center">
-                Analitycs
-              </Typography>
-              <form
-                className={classes.form}
-                noValidate
-                onSubmit={this.submitHandler}
-              >
-                <FormControl fullWidth>
-                  <InputLabel htmlFor="username">User Name</InputLabel>
-                  <Input
-                    id="username"
-                    onChange={this.handleChange("username")}
-                    autoComplete="username"
-                  />
-                </FormControl>
-                <FormControl className={classes.passwordControl} fullWidth>
-                  <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input
-                    id="password"
-                    type={this.state.showPassword ? "text" : "password"}
-                    onChange={this.handleChange("password")}
-                    autoComplete="current-password"
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={this.handleClickShowPasssword}
-                          onMouseDown={this.handleMouseDownPassword}
-                        >
-                          {this.state.showPassword ? (
-                            <VisibilityOff />
-                          ) : (
-                            <Visibility />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  fullWidth
-                >
-                  Login
-                </Button>
-              </form>
-              {isInvalidCredentials && (
-                <Typography
-                  className={classes.errorMessage}
-                  variant="subtitle1"
-                >
-                  Invalid Username or Password
-                </Typography>
-              )}
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
-    );
-  }
-
-  private handleChange = (prop: string) => (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
-    // TODO: fix me: typescript issue.
-    this.setState({ [prop]: event.target.value } as any);
-  };
-
-  private handleMouseDownPassword = (e: MouseEvent) => {
-    e.preventDefault();
-  };
-
-  private handleClickShowPasssword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
-  };
-
-  private submitHandler = (e: FormEvent) => {
-    e.preventDefault();
-    const { username, password } = this.state;
-    this.props.submitHandler(username, password);
-  };
-}
+const Login: SFC<IProps> = ({
+  classes,
+  isInvalidCredentials,
+  submitHandler,
+  showPassword,
+  handleChange,
+  handleMouseDownPassword,
+  handleClickShowPasssword
+}) => (
+  <div className={classes.container}>
+    <Grid
+      className={classes.loginContainer}
+      container
+      alignItems="center"
+      justify="center"
+      spacing={0}
+    >
+      <Grid item md={3} xs={11}>
+        <Paper className={classes.paper}>
+          <div className={classes.logoContainer}>
+            <img src={trimbleLogo} alt="trimbleLogo" />
+          </div>
+          <Typography className={classes.title} variant="h4" align="center">
+            Analytics Tools
+          </Typography>
+          <form noValidate onSubmit={submitHandler}>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="username">User Name</InputLabel>
+              <Input
+                id="username"
+                onChange={handleChange("username")}
+                autoComplete="username"
+              />
+            </FormControl>
+            <FormControl className={classes.passwordControl} fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                onChange={handleChange("password")}
+                autoComplete="current-password"
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPasssword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              fullWidth
+            >
+              Login
+            </Button>
+          </form>
+          {isInvalidCredentials && (
+            <Typography className={classes.errorMessage} variant="subtitle1">
+              Invalid Username or Password
+            </Typography>
+          )}
+        </Paper>
+      </Grid>
+    </Grid>
+  </div>
+);
 
 export default withStyles(styles)(Login);
