@@ -1,4 +1,4 @@
-import React, { Component, FormEvent, ChangeEvent, MouseEvent } from "react";
+import React, { FC, FormEvent, ChangeEvent, MouseEvent, useState } from "react";
 import { RouteComponentProps } from "react-router";
 
 import { getTokenAsync } from "lib/authApi";
@@ -6,89 +6,65 @@ import { storeToken } from "lib/sessionStorageApi";
 import LoadingContainer from "loading/LoadingContainer";
 import Login from "login/Login";
 
-interface IState {
-  isLoading: boolean;
-  isInvalidCredentials: boolean;
-  username: string;
-  password: string;
-  showPassword: boolean;
-  error: any;
-}
+const handleMouseDownPassword = (e: MouseEvent) => {
+  e.preventDefault();
+};
 
-class LoginContainer extends Component<RouteComponentProps, IState> {
-  public state: IState = {
-    isLoading: false,
-    isInvalidCredentials: false,
-    username: "",
-    password: "",
-    showPassword: false,
-    error: undefined
-  };
+const LoginContainer: FC<RouteComponentProps> = ({ history }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isInvalidCredentials, setIsInvalidCredentials] = useState(false);
+  const [error, setError] = useState();
 
-  public render() {
-    const {
-      isLoading,
-      username,
-      password,
-      showPassword,
-      isInvalidCredentials,
-      error
-    } = this.state;
-
-    return (
-      <LoadingContainer isLoading={isLoading} error={error}>
-        <Login
-          username={username}
-          password={password}
-          showPassword={showPassword}
-          isInvalidCredentials={isInvalidCredentials}
-          submitHandler={this.submitHandler}
-          handleChange={this.handleChange}
-          handleMouseDownPassword={this.handleMouseDownPassword}
-          handleClickShowPasssword={this.handleClickShowPasssword}
-        />
-      </LoadingContainer>
-    );
-  }
-
-  private handleChange = (prop: string) => (
+  const handleChange = (prop: "username" | "password") => (
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    // TODO: fix me: typescript issue.
-    this.setState({ [prop]: event.target.value } as any);
+    if (prop === "username") {
+      setUsername(event.target.value);
+    } else if (prop === "password") {
+      setPassword(event.target.value);
+    } else {
+      throw new Error("Invalid input.");
+    }
   };
 
-  private handleMouseDownPassword = (e: MouseEvent) => {
+  const handleClickShowPasssword = () => {
+    setShowPassword(prevState => !prevState);
+  };
+
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-  };
-
-  private handleClickShowPasssword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
-  };
-
-  private submitHandler = async (e: FormEvent) => {
-    e.preventDefault();
-    this.setState({
-      isLoading: true
-    });
+    setIsLoading(true);
     try {
-      const { username, password } = this.state;
       const token = await getTokenAsync(username, password);
       storeToken(token);
-      this.props.history.push("/");
+      history.push("/");
     } catch (error) {
       if (error.status === 401) {
-        this.setState({
-          isLoading: false,
-          isInvalidCredentials: true
-        });
+        setIsLoading(false);
+        setIsInvalidCredentials(true);
       } else {
-        this.setState({
-          error
-        });
+        setError(error);
       }
     }
   };
-}
+
+  return (
+    <LoadingContainer isLoading={isLoading} error={error}>
+      <Login
+        username={username}
+        password={password}
+        showPassword={showPassword}
+        isInvalidCredentials={isInvalidCredentials}
+        submitHandler={submitHandler}
+        handleChange={handleChange}
+        handleMouseDownPassword={handleMouseDownPassword}
+        handleClickShowPasssword={handleClickShowPasssword}
+      />
+    </LoadingContainer>
+  );
+};
 
 export default LoginContainer;

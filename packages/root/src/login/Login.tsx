@@ -1,14 +1,12 @@
 import trimbleLogo from "topbar/trimbleLogo.png";
 
-import React, { ChangeEvent, SFC, FormEvent, MouseEvent } from "react";
-
+import React, { ChangeEvent, FC, FormEvent, MouseEvent } from "react";
 import {
   createStyles,
   Theme,
   withStyles,
   WithStyles
 } from "@material-ui/core/styles";
-
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
@@ -29,7 +27,7 @@ interface IProps extends WithStyles<typeof styles> {
   password: string;
   showPassword: boolean;
   handleChange: (
-    prop: string
+    prop: "username" | "password"
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
   handleMouseDownPassword: (e: MouseEvent) => void;
   handleClickShowPasssword: () => void;
@@ -63,7 +61,7 @@ const styles = ({ spacing: { unit } }: Theme) =>
     }
   });
 
-const Login: SFC<IProps> = ({
+const Login: FC<IProps> = ({
   classes,
   isInvalidCredentials,
   submitHandler,
