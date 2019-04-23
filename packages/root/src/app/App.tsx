@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 
 import AppBody from "app/AppBody";
@@ -7,7 +7,7 @@ import TopBarContainer from "topbar/TopBarContainer";
 
 interface IProps extends WithStyles<typeof styles> {
   handleDrawerOpen: () => void;
-  open: boolean;
+  isOpen: boolean;
 }
 
 const styles = createStyles({
@@ -18,11 +18,11 @@ const styles = createStyles({
   }
 });
 
-const App: SFC<IProps> = ({ classes, handleDrawerOpen, open }) => (
+const App: FC<IProps> = ({ classes, handleDrawerOpen, isOpen }) => (
   <>
     <TopBarContainer handleDrawerOpen={handleDrawerOpen} />
     <div className={classes.bodyContainer}>
-      {/* <SideBar open={open} /> */}
+      <SideBar open={isOpen} />
       <AppBody />
     </div>
   </>

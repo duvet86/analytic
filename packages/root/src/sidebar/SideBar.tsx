@@ -10,11 +10,11 @@ import {
 
 import Drawer from "@material-ui/core/Drawer";
 
-import NavigationTabsContainer from "sidebar/navigationTabs/NavigationTabsContainer";
-import SideBarBodyContainer from "sidebar/SideBarBodyContainer";
-import NavButtons from "sidebar/NavButtons";
+// import NavigationTabsContainer from "sidebar/navigationTabs/NavigationTabsContainer";
+// import SideBarBodyContainer from "sidebar/SideBarBodyContainer";
+// import NavButtons from "sidebar/NavButtons";
 
-export const drawerBodyWidth = 312;
+// export const drawerBodyWidth = 312;
 
 interface IProps extends WithStyles<typeof styles, true> {
   open: boolean;
@@ -23,31 +23,24 @@ interface IProps extends WithStyles<typeof styles, true> {
 const styles = (theme: Theme) =>
   createStyles({
     drawerPaper: {
-      overflow: "hidden",
       position: "relative",
-      whiteSpace: "nowrap",
-      width: 362,
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
+      width: 312,
+      transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
-      }),
-      flexDirection: "row"
+      })
     },
     drawerPaperClose: {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
+      width: 0,
+      transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
-      }),
-      [theme.breakpoints.up("sm")]: {
-        width: 51
-      }
+      })
     },
     buttonsContainer: {
       width: 50
     },
     bodyContainer: {
-      width: drawerBodyWidth,
       borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
       display: "flex",
       flexDirection: "column"
@@ -62,10 +55,11 @@ const SideBar: SFC<IProps> = ({ theme, classes, open, ...props }) => (
     }}
     open={open}
   >
-    <NavButtons />
+    {/* <NavButtons /> */}
     <div className={classes.bodyContainer}>
-      <NavigationTabsContainer {...props} />
-      <SideBarBodyContainer {...props} />
+      Test
+      {/* <NavigationTabsContainer {...props} />
+      <SideBarBodyContainer {...props} /> */}
     </div>
   </Drawer>
 );

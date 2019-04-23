@@ -1,28 +1,15 @@
-import React, { Component } from "react";
-import { RouteComponentProps } from "react-router";
+import React, { FC, useState } from "react";
 
 import App from "app/App";
 
-interface ILocalState {
-  open: boolean;
-}
+const AppContainer: FC = () => {
+  const [isOpen, setIsOpen] = useState(true);
 
-class AppContainer extends Component<RouteComponentProps, ILocalState> {
-  public readonly state = {
-    open: true
+  const handleDrawerOpen = () => {
+    setIsOpen(prevState => !prevState);
   };
 
-  public render() {
-    return (
-      <App open={this.state.open} handleDrawerOpen={this.handleDrawerOpen} />
-    );
-  }
-
-  private handleDrawerOpen = () => {
-    this.setState((prevState: { open: boolean }) => ({
-      open: !prevState.open
-    }));
-  };
-}
+  return <App isOpen={isOpen} handleDrawerOpen={handleDrawerOpen} />;
+};
 
 export default AppContainer;
