@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import { History } from "history";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import TopBar from "topbar/TopBar";
 
-interface IProps {
+interface IOwnProps {
   handleDrawerOpen: () => void;
-  history: History;
 }
 
 interface IState {
   anchorEl?: HTMLElement;
 }
 
-class TopBarContainer extends Component<IProps, IState> {
+type Props = IOwnProps & RouteComponentProps;
+
+class TopBarContainer extends Component<Props, IState> {
   public readonly state = {
     anchorEl: undefined
   };
@@ -56,4 +57,4 @@ class TopBarContainer extends Component<IProps, IState> {
   };
 }
 
-export default TopBarContainer;
+export default withRouter(TopBarContainer);

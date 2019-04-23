@@ -20,7 +20,7 @@ const LoginContainerAsync = lazy<ComponentType<RouteComponentProps>>(() =>
   import("login/LoginContainer")
 );
 const AppContainerAsync = lazy<ComponentType<RouteComponentProps>>(() =>
-  import("App")
+  import("app/AppContainer")
 );
 
 render(

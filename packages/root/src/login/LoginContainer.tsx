@@ -1,4 +1,11 @@
-import React, { FC, FormEvent, ChangeEvent, MouseEvent, useState } from "react";
+import React, {
+  FC,
+  FormEvent,
+  ChangeEvent,
+  MouseEvent,
+  useState,
+  useEffect
+} from "react";
 import { RouteComponentProps } from "react-router";
 
 import { getTokenAsync } from "lib/authApi";
@@ -17,6 +24,30 @@ const LoginContainer: FC<RouteComponentProps> = ({ history }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isInvalidCredentials, setIsInvalidCredentials] = useState(false);
   const [error, setError] = useState();
+  const [sendRequest, setSendRequest] = useState(false);
+
+  useEffect(() => {
+    const submitForm = async () => {
+      setIsLoading(true);
+      try {
+        const token = await getTokenAsync(username, password);
+        storeToken(token);
+        history.push("/");
+      } catch (error) {
+        setSendRequest(false);
+        if (error.status === 401) {
+          setIsLoading(false);
+          setIsInvalidCredentials(true);
+        } else {
+          setError(error);
+        }
+      }
+    };
+
+    if (sendRequest) {
+      submitForm();
+    }
+  }, [sendRequest]);
 
   const handleChange = (prop: "username" | "password") => (
     event: ChangeEvent<HTMLInputElement>
@@ -36,19 +67,7 @@ const LoginContainer: FC<RouteComponentProps> = ({ history }) => {
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const token = await getTokenAsync(username, password);
-      storeToken(token);
-      history.push("/");
-    } catch (error) {
-      if (error.status === 401) {
-        setIsLoading(false);
-        setIsInvalidCredentials(true);
-      } else {
-        setError(error);
-      }
-    }
+    setSendRequest(true);
   };
 
   return (
