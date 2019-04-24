@@ -1,6 +1,6 @@
 import trimbleLogo from "topbar/trimbleLogo.png";
 
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import { Link, LinkProps } from "react-router-dom";
 
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
@@ -12,9 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-import HomeIcon from "@material-ui/icons/Home";
-import WarningIcon from "@material-ui/icons/Warning";
-import ContactUsIcon from "@material-ui/icons/Email";
+import { WarningIcon, ContactUsIcon, HomeIcon } from "common/icons";
 
 interface IProps extends WithStyles<typeof styles> {
   errorMessage: string;
@@ -81,7 +79,7 @@ const homePageLink = (props: ButtonProps) => (
   <Link to="/" {...props as LinkProps} />
 );
 
-const ErrorBoundary: SFC<IProps> = ({ classes, errorMessage }) => (
+const ErrorBoundary: FC<IProps> = ({ classes, errorMessage }) => (
   <Grid container className={classes.grid} justify="center">
     <Grid item xs={12}>
       <Card className={classes.card}>

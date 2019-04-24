@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { FC, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import TopBar from "topbar/TopBar";
@@ -7,54 +7,45 @@ interface IOwnProps {
   handleDrawerOpen: () => void;
 }
 
-interface IState {
-  anchorEl?: HTMLElement;
-}
-
 type Props = IOwnProps & RouteComponentProps;
 
-class TopBarContainer extends Component<Props, IState> {
-  public readonly state = {
-    anchorEl: undefined
+const TopBarContainer: FC<Props> = ({ history, handleDrawerOpen }) => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | undefined>();
+
+  const open = Boolean(anchorEl);
+
+  const onMenuClickHandler = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  public render() {
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+  const onMenuCloseHandler = () => setAnchorEl(undefined);
 
-    return (
-      <TopBar
-        anchorEl={anchorEl}
-        open={open}
-        handleDrawerOpen={this.props.handleDrawerOpen}
-        onMenuClickHandler={this.onMenuClickHandler}
-        onMenuCloseHandler={this.onMenuCloseHandler}
-        onWelcomePageClickHandler={this.onWelcomePageClickHandler}
-        onProfileClickHandler={this.onProfileClickHandler}
-        onLogoutClickHandler={this.onLogoutClickHandler}
-      />
-    );
-  }
-
-  private onMenuClickHandler = (event: React.MouseEvent<HTMLElement>) => {
-    this.setState({ anchorEl: event.currentTarget });
+  const onWelcomePageClickHandler = () => {
+    onMenuCloseHandler();
+    history.push("/");
   };
 
-  private onMenuCloseHandler = () => this.setState({ anchorEl: undefined });
-
-  private onWelcomePageClickHandler = () => {
-    this.onMenuCloseHandler();
-    this.props.history.push("/");
+  const onProfileClickHandler = () => {
+    onMenuCloseHandler();
+    history.push("/profile");
   };
 
-  private onProfileClickHandler = () => {
-    this.onMenuCloseHandler();
-    this.props.history.push("/profile");
+  const onLogoutClickHandler = () => {
+    onMenuCloseHandler();
   };
 
-  private onLogoutClickHandler = () => {
-    this.onMenuCloseHandler();
-  };
-}
+  return (
+    <TopBar
+      anchorEl={anchorEl}
+      open={open}
+      handleDrawerOpen={handleDrawerOpen}
+      onMenuClickHandler={onMenuClickHandler}
+      onMenuCloseHandler={onMenuCloseHandler}
+      onWelcomePageClickHandler={onWelcomePageClickHandler}
+      onProfileClickHandler={onProfileClickHandler}
+      onLogoutClickHandler={onLogoutClickHandler}
+    />
+  );
+};
 
 export default withRouter(TopBarContainer);

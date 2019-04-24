@@ -1,6 +1,6 @@
 import trimbleLogo from "topbar/trimbleLogo.png";
 
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -19,7 +19,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import ProfileIcon from "@material-ui/icons/Person";
+import { ProfileIcon } from "common/icons";
 
 interface IProps extends WithStyles<typeof styles> {
   anchorEl: HTMLElement | undefined;
@@ -46,14 +46,15 @@ const styles = (theme: Theme) =>
       alignItems: "center"
     },
     matchColor: {
-      color: "#01609d"
+      color: "#01609d",
+      textTransform: "uppercase"
     },
     toolBar: {
       justifyContent: "space-between"
     }
   });
 
-const TopBar: SFC<IProps> = ({
+const TopBar: FC<IProps> = ({
   classes,
   anchorEl,
   open,
@@ -84,7 +85,7 @@ const TopBar: SFC<IProps> = ({
         </Link>
       </div>
       <Typography variant="h6" className={classes.matchColor}>
-        CONNECTED MINE ANALYTIC
+        Analytics Tools
       </Typography>
       <div>
         <Button color="inherit" onClick={onMenuClickHandler}>
@@ -105,7 +106,7 @@ const TopBar: SFC<IProps> = ({
           open={open}
           onClose={onMenuCloseHandler}
         >
-          <MenuItem onClick={onWelcomePageClickHandler}>Welcome Page</MenuItem>
+          <MenuItem onClick={onWelcomePageClickHandler}>Portal</MenuItem>
           <MenuItem onClick={onProfileClickHandler}>Profile</MenuItem>
           <MenuItem onClick={onLogoutClickHandler}>Sign Out</MenuItem>
         </Menu>

@@ -1,3 +1,4 @@
+import "typeface-roboto";
 import "index.css";
 
 import React, { lazy, ComponentType } from "react";

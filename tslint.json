@@ -1,7 +1,9 @@
 {
   "defaultSeverity": "error",
   "extends": ["tslint:recommended", "tslint-react", "tslint-react-hooks"],
-  "jsRules": {},
+  "linterOptions": {
+    "exclude": ["node_modules/**", "packages/**/node_modules/**"]
+  },
   "rules": {
     "trailing-comma": false,
     "object-literal-key-quotes": [true, "as-needed"],
@@ -14,6 +16,5 @@
     "jsx-curly-spacing": { "when": "never" },
     "jsx-wrap-multiline": ["error", { "declaration": false }],
     "react-hooks-nesting": "error"
-  },
-  "rulesDirectory": []
+  }
 }
