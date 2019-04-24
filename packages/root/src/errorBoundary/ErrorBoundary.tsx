@@ -2,9 +2,7 @@ import trimbleLogo from "topbar/trimbleLogo.png";
 
 import React, { FC } from "react";
 import { Link, LinkProps } from "react-router-dom";
-
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-
 import Grid from "@material-ui/core/Grid";
 import Button, { ButtonProps } from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -12,7 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-import { WarningIcon, ContactUsIcon, HomeIcon } from "common/icons";
+import { WarningIcon, ContactUsIcon, HomeIcon } from "app/icons";
 
 interface IProps extends WithStyles<typeof styles> {
   errorMessage: string;

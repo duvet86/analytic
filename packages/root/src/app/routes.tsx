@@ -1,22 +1,19 @@
-import React, { ComponentType } from "react";
-import { RouteComponentProps } from "react-router";
+import React from "react";
 
-const WelcomePageAsync = React.lazy(() => import("welcomePage/WelcomePage"));
-const WorkbenchContainerAsync = React.lazy<
-  ComponentType<RouteComponentProps<{ id: string }>>
->(() => import("workbench/WorkbenchContainer"));
+const WelcomePageAsync = React.lazy(() => import("portal/PortalContainer"));
+const WorkbenchContainerAsync = React.lazy(() =>
+  import("portal/PortalContainer")
+);
 const PagebuilderContainerAsync = React.lazy(() =>
-  import("pagebuilder/PagebuilderContainer")
+  import("portal/PortalContainer")
 );
 const ProfileContainerAsync = React.lazy(() =>
-  import("profile/ProfileContainer")
+  import("portal/PortalContainer")
 );
 
 const renderWelcomePageAsync = () => <WelcomePageAsync />;
 const renderPagebuilderContainerAsync = () => <PagebuilderContainerAsync />;
-const renderWorkbenchContainerAsync = (
-  props: RouteComponentProps<{ id: string }>
-) => <WorkbenchContainerAsync {...props} />;
+const renderWorkbenchContainerAsync = () => <WorkbenchContainerAsync />;
 const renderProfileContainerAsync = () => <ProfileContainerAsync />;
 
 export const routeRenderers = [
