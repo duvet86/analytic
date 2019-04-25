@@ -1,22 +1,14 @@
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import classNames from "classnames";
-
 import {
   createStyles,
   withStyles,
   WithStyles,
   Theme
 } from "@material-ui/core/styles";
-
 import Drawer from "@material-ui/core/Drawer";
 
-// import NavigationTabsContainer from "sidebar/navigationTabs/NavigationTabsContainer";
-// import SideBarBodyContainer from "sidebar/SideBarBodyContainer";
-// import NavButtons from "sidebar/NavButtons";
-
-// export const drawerBodyWidth = 312;
-
-interface IProps extends WithStyles<typeof styles, true> {
+interface IProps extends WithStyles<typeof styles> {
   open: boolean;
 }
 
@@ -37,17 +29,12 @@ const styles = (theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen
       })
     },
-    buttonsContainer: {
-      width: 50
-    },
     bodyContainer: {
-      borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
-      display: "flex",
-      flexDirection: "column"
+      borderLeft: "1px solid rgba(0, 0, 0, 0.12)"
     }
   });
 
-const SideBar: SFC<IProps> = ({ theme, classes, open, ...props }) => (
+const SideBar: FC<IProps> = ({ classes, open }) => (
   <Drawer
     variant="permanent"
     classes={{
@@ -55,7 +42,6 @@ const SideBar: SFC<IProps> = ({ theme, classes, open, ...props }) => (
     }}
     open={open}
   >
-    {/* <NavButtons /> */}
     <div className={classes.bodyContainer}>
       Test
       {/* <NavigationTabsContainer {...props} />
@@ -64,4 +50,4 @@ const SideBar: SFC<IProps> = ({ theme, classes, open, ...props }) => (
   </Drawer>
 );
 
-export default withStyles(styles, { withTheme: true })(SideBar);
+export default withStyles(styles)(SideBar);

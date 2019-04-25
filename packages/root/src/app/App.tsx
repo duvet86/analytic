@@ -1,9 +1,13 @@
 import React, { FC } from "react";
+import { Route, Switch } from "react-router-dom";
+import { routeRenderers } from "app/routes";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 
-import AppBody from "app/AppBody";
 import SideBar from "sidebar/SideBar";
 import TopBarContainer from "topbar/TopBarContainer";
+import Grid from "@material-ui/core/Grid";
+import LoadAsync from "loading/LoadAsync";
+import NotFoundRoute from "routes/NotFoundRoute";
 
 interface IProps extends WithStyles<typeof styles> {
   handleDrawerOpen: () => void;
@@ -23,7 +27,18 @@ const App: FC<IProps> = ({ classes, handleDrawerOpen, isOpen }) => (
     <TopBarContainer handleDrawerOpen={handleDrawerOpen} />
     <div className={classes.bodyContainer}>
       <SideBar open={isOpen} />
-      <AppBody />
+      <Grid container>
+        <Grid item xs={12}>
+          <LoadAsync>
+            <Switch>
+              {routeRenderers.map(({ key, path, routeRenderer }) => (
+                <Route key={key} exact path={path} render={routeRenderer} />
+              ))}
+              <NotFoundRoute />
+            </Switch>
+          </LoadAsync>
+        </Grid>
+      </Grid>
     </div>
   </>
 );

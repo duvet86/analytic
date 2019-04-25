@@ -34,9 +34,9 @@ const Portal: FC<IProps> = ({
         onChange={handleChange}
       />
     </Grid>
-    {visibleLinks.map(({ id, ...rest }) => (
-      <Grid item md={4} xs={12} key={id}>
-        <PortalAppCard {...rest} />
+    {visibleLinks.map((link, i) => (
+      <Grid item md={4} xs={12} key={i}>
+        <PortalAppCard {...link} />
       </Grid>
     ))}
   </Grid>
