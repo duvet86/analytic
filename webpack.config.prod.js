@@ -12,6 +12,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const postcssNormalize = require("postcss-normalize");
 
 const publicPath = "/";
 
@@ -46,7 +47,11 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
               flexbox: "no-2009"
             },
             stage: 3
-          })
+          }),
+          // Adds PostCSS Normalize as the reset css with default options,
+          // so that it honors browserslist config in package.json
+          // which in turn let's users customize the target behavior as per their needs.
+          postcssNormalize()
         ],
         sourceMap: true
       }
