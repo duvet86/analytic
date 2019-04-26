@@ -1,8 +1,5 @@
 import React, { SFC } from "react";
 import { Location } from "history";
-
-import { IFolderChild } from "sidebar/userItems/types";
-
 import {
   createStyles,
   Theme,
@@ -10,20 +7,20 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
-
 import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
+import { IFolderChild } from "sidebar/types";
+import Item from "sidebar/Item";
+import FolderContainer from "sidebar/FolderContainer";
+
 import FolderIcon from "@material-ui/icons/Folder";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import ExpandLess from "@material-ui/icons/ExpandMore";
 import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
-
-import Item from "sidebar/userItems/Item";
-import FolderContainer from "sidebar/userItems/FolderContainer";
 
 interface IProps extends WithStyles<typeof styles, true> {
   location: Location;
