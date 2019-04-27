@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 
-import FavouriteItems from "sidebar/FavouriteItems";
+import FolderTreeContainer from "sidebar/FolderTreeContainer";
 
 interface IProps extends WithStyles<typeof styles> {
   open: boolean;
@@ -45,7 +45,7 @@ const SideBar: FC<IProps> = ({ classes, open }) => (
     open={open}
   >
     <div className={classes.bodyContainer}>
-      <FavouriteItems />
+      <FolderTreeContainer />
     </div>
   </Drawer>
 );

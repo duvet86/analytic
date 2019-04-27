@@ -104,7 +104,6 @@ const Folder: SFC<IProps> = ({
                   key={ChildFolderId}
                   label={ChildFolder.Label}
                   childFolders={ChildFolder.Children}
-                  location={location}
                 />
               ) : (
                 <Item
