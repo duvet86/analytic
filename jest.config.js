@@ -12,7 +12,7 @@ module.exports = {
   moduleNameMapper: {
     "^.+\\.css$": "identity-obj-proxy",
     "^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-      "<rootDir>/packages/root/src/__mocks__/fileMock.ts",
-    "typeface-roboto": "<rootDir>/packages/root/src/__mocks__/fileMock.ts"
+      "<rootDir>/__mocks__/fileMock.ts",
+    "typeface-roboto": "<rootDir>/__mocks__/fileMock.ts"
   }
 };
