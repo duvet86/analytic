@@ -1,7 +1,6 @@
 module.exports = {
-  collectCoverageFrom: ["packages/**/*.{ts,tsx}", "!packages/**/*.d.ts"],
   resolver: require.resolve("jest-pnp-resolver"),
-  roots: ["<rootDir>/packages/"],
+  roots: ["<rootDir>/packages"],
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
@@ -14,5 +13,6 @@ module.exports = {
     "^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
       "<rootDir>/__mocks__/fileMock.ts",
     "typeface-roboto": "<rootDir>/__mocks__/fileMock.ts"
-  }
+  },
+  collectCoverageFrom: ["packages/**/*.{ts,tsx}", "!packages/**/*.d.ts"]
 };

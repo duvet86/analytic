@@ -8,7 +8,10 @@ import {
 } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 
+import SidebarTabsContainer from "sidebar/SidebarTabsContainer";
 import FolderTreeContainer from "sidebar/FolderTreeContainer";
+
+const drawerWidth = 312;
 
 interface IProps extends WithStyles<typeof styles> {
   open: boolean;
@@ -16,15 +19,23 @@ interface IProps extends WithStyles<typeof styles> {
 
 const styles = (theme: Theme) =>
   createStyles({
-    drawerPaper: {
-      position: "relative",
-      width: 312,
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
       })
     },
-    drawerPaperClose: {
+    drawerPaper: {
+      position: "relative",
+      width: drawerWidth,
+      transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
+    },
+    drawerClose: {
       width: 0,
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
@@ -38,13 +49,15 @@ const styles = (theme: Theme) =>
 
 const SideBar: FC<IProps> = ({ classes, open }) => (
   <Drawer
+    className={classNames(classes.drawer, !open && classes.drawerClose)}
     variant="permanent"
     classes={{
-      paper: classNames(classes.drawerPaper, !open && classes.drawerPaperClose)
+      paper: classNames(classes.drawerPaper, !open && classes.drawerClose)
     }}
     open={open}
   >
     <div className={classes.bodyContainer}>
+      <SidebarTabsContainer />
       <FolderTreeContainer />
     </div>
   </Drawer>

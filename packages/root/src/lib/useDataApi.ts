@@ -50,12 +50,14 @@ const dataFetchReducer = <T>(
       return {
         ...state,
         isLoading: false,
+        error: undefined,
         data: action.payload
       };
     case DataFetchActionTypes.FETCH_FAILURE:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        error: action.error
       };
     default:
       throw new Error();

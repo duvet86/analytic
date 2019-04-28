@@ -68,9 +68,5 @@
       "@trimble-items/*": ["trimble-items/src/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "packages/**/node_modules",
-    "packages/**/__tests__/"
-  ]
+  "exclude": ["node_modules", "packages/**/node_modules"]
 }
