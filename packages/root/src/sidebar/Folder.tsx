@@ -1,5 +1,4 @@
 import React, { SFC } from "react";
-import { Location } from "history";
 import {
   createStyles,
   Theme,
@@ -23,7 +22,6 @@ import ExpandLess from "@material-ui/icons/ExpandMore";
 import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
 
 interface IProps extends WithStyles<typeof styles, true> {
-  location: Location;
   label: string;
   handleClick: () => void;
   expanded: boolean;
@@ -49,7 +47,6 @@ const styles = (theme: Theme) =>
 
 const Folder: SFC<IProps> = ({
   classes,
-  location,
   label,
   childFolders,
   handleClick,
