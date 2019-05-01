@@ -1,11 +1,14 @@
 import React, { FC, useState, ChangeEvent } from "react";
 
-import { tabs } from "sidebar/tabs";
-import SidebarTabs from "sidebar/SidebarTabs";
+import Sidebar from "sidebar/Sidebar";
+
+interface IProps {
+  open: boolean;
+}
 
 type State = 0 | 1 | 2;
 
-const SidebarTabsContainer: FC = () => {
+const SidebarContainer: FC<IProps> = ({ open }) => {
   const [selectedTab, setSelectedTab] = useState<State>(0);
 
   const handleChange = (_: ChangeEvent<{}>, value: State) => {
@@ -13,12 +16,12 @@ const SidebarTabsContainer: FC = () => {
   };
 
   return (
-    <SidebarTabs
-      tabs={tabs}
+    <Sidebar
+      open={open}
       selectedTab={selectedTab}
       handleChange={handleChange}
     />
   );
 };
 
-export default SidebarTabsContainer;
+export default SidebarContainer;

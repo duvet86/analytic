@@ -1,34 +1,50 @@
-import React, { SFC } from "react";
+import React, { FC } from "react";
+import { useDataApi } from "lib/useDataApi";
 
-import FolderTreeContainer from "sidebar/FolderTreeContainer";
-import SideBarBody from "sidebar/SideBarBody";
+import LoadingContainer from "loading/LoadingContainer";
+import SidebarBody from "sidebar/SidebarBody";
+import FolderTree from "sidebar/folder/FolderTree";
+import { IFolderChild, ItemTypeIds } from "sidebar/types";
 
-interface IOwnProps {
-  location: Location;
+const myItems = `api/useritems/myitems?tenant=${
+  process.env.TENANT_ID
+}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
+  ItemTypeIds.USER_DATAVIEW
+}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
+
+const sharedWithMe = `api/useritems/sharedwithme?tenant=${
+  process.env.TENANT_ID
+}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
+  ItemTypeIds.USER_DATAVIEW
+}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
+
+interface IProps {
+  selectedTab: 0 | 1 | 2;
 }
 
-type Props = ReturnType<typeof mapStateToProps> & IOwnProps;
+const SidebarBodyContainer: FC<IProps> = ({ selectedTab }) => {
+  const [{ isLoading, data }, setUrl] = useDataApi<IFolderChild[]>(myItems, []);
 
-const SideBarBodyContainer: SFC<Props> = ({ selectedTab, ...props }) => {
-  let component: JSX.Element;
   switch (selectedTab) {
+    case 0:
+      setUrl(myItems);
+      break;
     case 1:
-      component = <Filters />;
+      setUrl(sharedWithMe);
       break;
     case 2:
-      component = <OperatorsListContainer {...props} />;
+      setUrl(myItems);
       break;
     default:
-      component = <FolderTreeContainer {...props} />;
-      break;
+      throw new Error();
   }
-  const renderer = () => component;
+  const renderer = () => <FolderTree folderList={data} />;
 
-  return <SideBarBody tabRenderer={renderer} />;
+  return (
+    <LoadingContainer isLoading={isLoading}>
+      <SidebarBody tabRenderer={renderer} />
+    </LoadingContainer>
+  );
 };
 
-const mapStateToProps = ({ navigationTabs: { selectedTab } }: RootState) => ({
-  selectedTab
-});
-
-export default connect(mapStateToProps)(SideBarBodyContainer);
+export default SidebarBodyContainer;

@@ -9,12 +9,13 @@ interface IProps extends WithStyles<typeof styles> {
 const styles = createStyles({
   bodyContainer: {
     height: "100%",
-    display: "flex"
+    display: "flex",
+    overflow: "auto"
   }
 });
 
-const SideBarBody: SFC<IProps> = ({ classes, tabRenderer }) => (
+const SidebarBody: SFC<IProps> = ({ classes, tabRenderer }) => (
   <div className={classes.bodyContainer}>{tabRenderer()}</div>
 );
 
-export default withStyles(styles)(SideBarBody);
+export default withStyles(styles)(SidebarBody);

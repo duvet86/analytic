@@ -13,8 +13,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 import { IFolderChild } from "sidebar/types";
-import Item from "sidebar/Item";
-import FolderContainer from "sidebar/FolderContainer";
+import Item from "sidebar/folder/Item";
+import FolderContainer from "sidebar/folder/FolderContainer";
 
 import FolderIcon from "@material-ui/icons/Folder";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";

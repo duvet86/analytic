@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { routeRenderers } from "app/routes";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 
-import SideBar from "sidebar/SideBar";
+import SidebarContainer from "sidebar/SidebarContainer";
 import TopBarContainer from "topbar/TopBarContainer";
 import Grid from "@material-ui/core/Grid";
 import LoadAsync from "loading/LoadAsync";
@@ -26,7 +26,7 @@ const App: FC<IProps> = ({ classes, handleDrawerOpen, isOpen }) => (
   <>
     <TopBarContainer handleDrawerOpen={handleDrawerOpen} />
     <div className={classes.bodyContainer}>
-      <SideBar open={isOpen} />
+      <SidebarContainer open={isOpen} />
       <Grid container>
         <Grid item xs={12}>
           <LoadAsync>

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ChangeEvent } from "react";
 import classNames from "classnames";
 import {
   createStyles,
@@ -8,13 +8,15 @@ import {
 } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 
-import SidebarTabsContainer from "sidebar/SidebarTabsContainer";
-import FolderTreeContainer from "sidebar/FolderTreeContainer";
+import SidebarTabs from "sidebar/SidebarTabs";
+import SidebarBodyContainer from "sidebar/SidebarBodyContainer";
 
 const drawerWidth = 312;
 
 interface IProps extends WithStyles<typeof styles> {
   open: boolean;
+  selectedTab: 0 | 1 | 2;
+  handleChange: (_: ChangeEvent<{}>, value: 0 | 1 | 2) => void;
 }
 
 const styles = (theme: Theme) =>
@@ -30,6 +32,7 @@ const styles = (theme: Theme) =>
     drawerPaper: {
       position: "relative",
       width: drawerWidth,
+      overflow: "hidden",
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
@@ -43,11 +46,14 @@ const styles = (theme: Theme) =>
       })
     },
     bodyContainer: {
-      borderLeft: "1px solid rgba(0, 0, 0, 0.12)"
+      borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
+      display: "flex",
+      flexDirection: "column",
+      marginBottom: 48
     }
   });
 
-const SideBar: FC<IProps> = ({ classes, open }) => (
+const Sidebar: FC<IProps> = ({ classes, open, selectedTab, handleChange }) => (
   <Drawer
     className={classNames(classes.drawer, !open && classes.drawerClose)}
     variant="permanent"
@@ -57,10 +63,10 @@ const SideBar: FC<IProps> = ({ classes, open }) => (
     open={open}
   >
     <div className={classes.bodyContainer}>
-      <SidebarTabsContainer />
-      <FolderTreeContainer />
+      <SidebarTabs selectedTab={selectedTab} handleChange={handleChange} />
+      <SidebarBodyContainer selectedTab={selectedTab} />
     </div>
   </Drawer>
 );
 
-export default withStyles(styles)(SideBar);
+export default withStyles(styles)(Sidebar);
