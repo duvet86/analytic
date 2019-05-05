@@ -31,8 +31,8 @@ const App: FC<IProps> = ({ classes, handleDrawerOpen, isOpen }) => (
         <Grid item xs={12}>
           <LoadAsync>
             <Switch>
-              {routeRenderers.map(({ key, path, routeRenderer }) => (
-                <Route key={key} exact path={path} render={routeRenderer} />
+              {routeRenderers.map(({ path, routeRenderer }, i) => (
+                <Route key={i} exact path={path} render={routeRenderer} />
               ))}
               <NotFoundRoute />
             </Switch>

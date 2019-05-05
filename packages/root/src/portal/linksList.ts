@@ -22,7 +22,7 @@ const linksList: IPortalLink[] = [
     IconComponent: FolderIcon,
     label: "Items Manager",
     description: "This is where you organise your items.",
-    to: "/"
+    to: "/itemsmanager"
   },
   {
     IconComponent: DashboardIcon,

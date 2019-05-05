@@ -8,7 +8,7 @@ const PagebuilderContainerAsync = React.lazy(() =>
   import("portal/PortalContainer")
 );
 const ProfileContainerAsync = React.lazy(() =>
-  import("portal/PortalContainer")
+  import("profile/ProfileContainer")
 );
 
 const renderWelcomePageAsync = () => <WelcomePageAsync />;
@@ -18,22 +18,22 @@ const renderProfileContainerAsync = () => <ProfileContainerAsync />;
 
 export const routeRenderers = [
   {
-    key: 1,
     routeRenderer: renderWelcomePageAsync,
     path: "/"
   },
   {
-    key: 2,
+    routeRenderer: renderWelcomePageAsync,
+    path: "/itemsmanager"
+  },
+  {
     routeRenderer: renderPagebuilderContainerAsync,
     path: "/pagebuilder/:id"
   },
   {
-    key: 3,
     routeRenderer: renderWorkbenchContainerAsync,
     path: "/workbench/:id"
   },
   {
-    key: 4,
     routeRenderer: renderProfileContainerAsync,
     path: "/profile"
   }
