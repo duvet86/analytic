@@ -8,14 +8,18 @@ import {
 } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 
+import { IFolderChild } from "sidebar/types";
+import LoadingContainer from "loading/LoadingContainer";
 import SidebarTabs from "sidebar/SidebarTabs";
-import SidebarBodyContainer from "sidebar/SidebarBodyContainer";
+import SidebarBody from "sidebar/SidebarBody";
 
 const drawerWidth = 312;
 
 interface IProps extends WithStyles<typeof styles> {
+  isLoading: boolean;
   open: boolean;
   selectedTab: 0 | 1 | 2;
+  folderList: IFolderChild[];
   handleChange: (_: ChangeEvent<{}>, value: 0 | 1 | 2) => void;
 }
 
@@ -53,7 +57,14 @@ const styles = (theme: Theme) =>
     }
   });
 
-const Sidebar: FC<IProps> = ({ classes, open, selectedTab, handleChange }) => (
+const Sidebar: FC<IProps> = ({
+  classes,
+  isLoading,
+  open,
+  selectedTab,
+  folderList,
+  handleChange
+}) => (
   <Drawer
     className={classNames(classes.drawer, !open && classes.drawerClose)}
     variant="permanent"
@@ -64,7 +75,9 @@ const Sidebar: FC<IProps> = ({ classes, open, selectedTab, handleChange }) => (
   >
     <div className={classes.bodyContainer}>
       <SidebarTabs selectedTab={selectedTab} handleChange={handleChange} />
-      <SidebarBodyContainer selectedTab={selectedTab} />
+      <LoadingContainer isLoading={isLoading}>
+        <SidebarBody folderList={folderList} />
+      </LoadingContainer>
     </div>
   </Drawer>
 );

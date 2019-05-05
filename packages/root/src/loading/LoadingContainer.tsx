@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 
 import Loading from "loading/Loading";
 import BackgroundLoading from "loading/BackgroundLoading";
@@ -10,64 +10,58 @@ interface IProps {
   background?: boolean;
 }
 
-interface IState {
-  pastDelay: boolean;
+function usePrevious(value: any) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
 }
 
-class LoadingContainer extends Component<IProps, Readonly<IState>> {
-  public readonly state = {
-    pastDelay: false
+const LoadingContainer: FC<IProps> = ({
+  delay,
+  error,
+  isLoading,
+  background,
+  children
+}) => {
+  const [pastDelay, setPastDelay] = useState(false);
+  const prevIsLoading = usePrevious(isLoading);
+
+  const setDelay = (delayInput: number) => {
+    return window.setTimeout(() => {
+      setPastDelay(true);
+    }, delayInput);
   };
 
-  private delay?: number;
-
-  public componentDidMount() {
-    this.delay = this.setDelay(this.props.delay || 200);
-  }
-
-  public componentDidUpdate(prevProps: IProps) {
-    if (!this.props.isLoading && this.state.pastDelay) {
-      this.setState({
-        pastDelay: false
-      });
+  useEffect(() => {
+    let clearTimeout: number | undefined;
+    if (!isLoading && pastDelay) {
+      setPastDelay(false);
     }
-    if (!prevProps.isLoading && this.props.isLoading && !this.state.pastDelay) {
-      this.delay = this.setDelay(this.props.delay || 200);
+    if (!prevIsLoading && isLoading && !pastDelay) {
+      clearTimeout = setDelay(delay || 200);
     }
-  }
 
-  public componentWillUnmount() {
-    if (this.delay) {
-      window.clearTimeout(this.delay);
-      this.delay = undefined;
-    }
-  }
+    return function cleanup() {
+      window.clearTimeout(clearTimeout);
+    };
+  }, [prevIsLoading, isLoading, pastDelay]);
 
-  public render() {
-    const { error, isLoading, background, children } = this.props;
-    const { pastDelay } = this.state;
-
-    return background ? (
-      <BackgroundLoading
-        isLoading={isLoading}
-        pastDelay={pastDelay}
-        children={children}
-      />
-    ) : (
-      <Loading
-        isLoading={isLoading}
-        pastDelay={pastDelay}
-        children={children}
-        error={error}
-      />
-    );
-  }
-
-  private setDelay(delay: number) {
-    return window.setTimeout(() => {
-      this.setState({ pastDelay: true });
-    }, delay);
-  }
-}
+  return background ? (
+    <BackgroundLoading
+      isLoading={isLoading}
+      pastDelay={pastDelay}
+      children={children}
+    />
+  ) : (
+    <Loading
+      isLoading={isLoading}
+      pastDelay={pastDelay}
+      children={children}
+      error={error}
+    />
+  );
+};
 
 export default LoadingContainer;

@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
+import { clearToken } from "lib/sessionStorageApi";
 import TopBar from "topbar/TopBar";
 
 interface IOwnProps {
@@ -32,6 +33,8 @@ const TopBarContainer: FC<Props> = ({ history, handleDrawerOpen }) => {
 
   const onLogoutClickHandler = () => {
     onMenuCloseHandler();
+    clearToken();
+    history.push("/login");
   };
 
   return (

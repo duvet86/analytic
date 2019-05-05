@@ -1,16 +1,29 @@
 import React, { FC } from "react";
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles
+} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 
 import FolderContainer from "sidebar/folder/FolderContainer";
 import Item from "sidebar/folder/Item";
 import { IFolderChild } from "sidebar/types";
 
-interface IProps {
+interface IProps extends WithStyles<typeof styles> {
   folderList: IFolderChild[];
 }
 
-const FolderTree: FC<IProps> = ({ folderList }) => (
-  <List disablePadding component="nav">
+const styles = () =>
+  createStyles({
+    listContainer: {
+      width: "100%"
+    }
+  });
+
+const FolderTree: FC<IProps> = ({ classes, folderList }) => (
+  <List className={classes.listContainer} disablePadding component="nav">
     {folderList.map(
       ({ ChildType, ChildFolderId, ChildFolder, ChildItemId, ChildItem }) =>
         ChildType === "F" ? (
@@ -33,4 +46,4 @@ const FolderTree: FC<IProps> = ({ folderList }) => (
   </List>
 );
 
-export default FolderTree;
+export default withStyles(styles)(FolderTree);

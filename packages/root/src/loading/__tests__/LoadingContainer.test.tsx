@@ -1,8 +1,8 @@
 import React from "react";
 import { create } from "react-test-renderer";
 
-import LoadingContainer from "../LoadingContainer";
-import BaseLoading from "../BaseLoading";
+import LoadingContainer from "loading/LoadingContainer";
+import Loading from "loading/Loading";
 
 // Mock setTimeout.
 jest.useFakeTimers();
@@ -35,7 +35,6 @@ describe("<LoadingContainer />", () => {
 
     const instance = component.root;
 
-    expect(instance.instance.state.pastDelay).toStrictEqual(false);
     expect(instance.children.length).toEqual(1);
 
     const childComponent = instance.find(el => {
@@ -56,7 +55,6 @@ describe("<LoadingContainer />", () => {
 
     const instance = component.root;
 
-    expect(instance.instance.state.pastDelay).toStrictEqual(false);
     expect(instance.children.length).toEqual(1);
 
     const childComponent = instance.find(el => {
@@ -64,21 +62,15 @@ describe("<LoadingContainer />", () => {
     });
     expect(childComponent).toBeDefined();
 
-    // Rerender component, test shouldComponentUpdate.
-    const renderSpy = jest.spyOn(instance.instance, "render");
     component.update(
       <LoadingContainer isLoading={true}>
         <div>Child</div>
       </LoadingContainer>
     );
 
-    expect(instance.instance.state.pastDelay).toStrictEqual(false);
-    expect(instance.instance.delay).toBeDefined();
-    // expect(renderSpy).not.toHaveBeenCalled();
-
     jest.runAllTimers();
 
-    const loadingComponent = instance.findByType(BaseLoading);
+    const loadingComponent = instance.findByType(Loading);
     expect(loadingComponent).toBeDefined();
   });
 
@@ -89,9 +81,6 @@ describe("<LoadingContainer />", () => {
       </LoadingContainer>
     );
 
-    const instance = component.root;
-
-    expect(instance.instance.state.pastDelay).toStrictEqual(false);
     expect(component.toJSON()).toBeNull();
   });
 
@@ -107,8 +96,7 @@ describe("<LoadingContainer />", () => {
 
     const instance = component.root;
 
-    expect(instance.instance.state.pastDelay).toStrictEqual(true);
-    const childComponent = instance.findByType(BaseLoading);
+    const childComponent = instance.findByType(Loading);
     expect(childComponent).toBeDefined();
   });
 
@@ -122,6 +110,6 @@ describe("<LoadingContainer />", () => {
     component.unmount();
 
     const clearTimeoutSpy = jest.spyOn(window, "clearTimeout");
-    expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+    expect(clearTimeoutSpy).toHaveBeenCalled();
   });
 });

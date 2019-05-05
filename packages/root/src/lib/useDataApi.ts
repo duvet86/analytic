@@ -6,7 +6,10 @@ import {
   Dispatch,
   SetStateAction
 } from "react";
+
+import { clearToken } from "lib/sessionStorageApi";
 import { getWithJwtAsync } from "lib/http";
+import history from "lib/history";
 
 const enum DataFetchActionTypes {
   FETCH_INIT = "FETCH_INIT",
@@ -80,7 +83,7 @@ export const useDataApi = <T>(
   const [state, dispatch] = useReducer<Reducer<IState<T>, FetchActions<T>>>(
     dataFetchReducer,
     {
-      isLoading: false,
+      isLoading: true,
       error: undefined,
       data: initialData
     }
@@ -102,8 +105,12 @@ export const useDataApi = <T>(
           });
         }
       } catch (error) {
-        if (!didCancel) {
+        if (error.status === 401) {
+          clearToken();
+          history.push("/login");
+        } else if (!didCancel) {
           dispatch({ type: DataFetchActionTypes.FETCH_FAILURE, error });
+          throw new Error(error);
         }
       }
     }
@@ -131,7 +138,7 @@ export const usePromise = <T>(promise: Promise<T>, initialData: T) => {
   const [state, dispatch] = useReducer<Reducer<IState<T>, FetchActions<T>>>(
     dataFetchReducer,
     {
-      isLoading: false,
+      isLoading: true,
       error: undefined,
       data: initialData
     }
@@ -153,7 +160,10 @@ export const usePromise = <T>(promise: Promise<T>, initialData: T) => {
           });
         }
       } catch (error) {
-        if (!didCancel) {
+        if (error.status === 401) {
+          clearToken();
+          history.push("/login");
+        } else if (!didCancel) {
           dispatch({ type: DataFetchActionTypes.FETCH_FAILURE, error });
         }
       }

@@ -1,9 +1,11 @@
 import React, { SFC } from "react";
 
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
+import FolderTree from "sidebar/folder/FolderTree";
+import { IFolderChild } from "sidebar/types";
 
 interface IProps extends WithStyles<typeof styles> {
-  tabRenderer: () => JSX.Element;
+  folderList: IFolderChild[];
 }
 
 const styles = createStyles({
@@ -14,8 +16,10 @@ const styles = createStyles({
   }
 });
 
-const SidebarBody: SFC<IProps> = ({ classes, tabRenderer }) => (
-  <div className={classes.bodyContainer}>{tabRenderer()}</div>
+const SidebarBody: SFC<IProps> = ({ classes, folderList }) => (
+  <div className={classes.bodyContainer}>
+    <FolderTree folderList={folderList} />
+  </div>
 );
 
 export default withStyles(styles)(SidebarBody);

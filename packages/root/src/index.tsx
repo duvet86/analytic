@@ -4,11 +4,12 @@ import "index.css";
 import React, { lazy, ComponentType } from "react";
 import { render } from "react-dom";
 import { Switch, RouteComponentProps } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
 import configureTheme from "lib/configureTheme";
+import history from "lib/history";
 import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
 import LoadAsync from "loading/LoadAsync";
 import AnonymousRoute from "routes/AnonymousRoute";
@@ -25,7 +26,7 @@ const AppContainerAsync = lazy<ComponentType<RouteComponentProps>>(() =>
 );
 
 render(
-  <BrowserRouter>
+  <Router history={history}>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <ErrorBoundaryContainer>
@@ -37,7 +38,7 @@ render(
         </LoadAsync>
       </ErrorBoundaryContainer>
     </MuiThemeProvider>
-  </BrowserRouter>,
+  </Router>,
   document.getElementById("root")
 );
 
