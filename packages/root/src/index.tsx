@@ -8,6 +8,7 @@ import { Router } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
+import { portal, login } from "routes/routes";
 import configureTheme from "lib/configureTheme";
 import history from "lib/history";
 import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
@@ -32,8 +33,8 @@ render(
       <ErrorBoundaryContainer>
         <LoadAsync>
           <Switch>
-            <AnonymousRoute path="/login" component={LoginContainerAsync} />
-            <AuthenticatedRoute path="/" component={AppContainerAsync} />
+            <AnonymousRoute path={login} component={LoginContainerAsync} />
+            <AuthenticatedRoute path={portal} component={AppContainerAsync} />
           </Switch>
         </LoadAsync>
       </ErrorBoundaryContainer>

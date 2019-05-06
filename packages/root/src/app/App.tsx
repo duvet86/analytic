@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
-import { routeRenderers } from "app/routes";
+import { routeComponents } from "app/routeComponents";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 
 import SidebarContainer from "sidebar/SidebarContainer";
@@ -31,7 +31,7 @@ const App: FC<IProps> = ({ classes, handleDrawerOpen, isOpen }) => (
         <Grid item xs={12}>
           <LoadAsync>
             <Switch>
-              {routeRenderers.map(({ path, routeRenderer }, i) => (
+              {routeComponents.map(({ path, routeRenderer }, i) => (
                 <Route key={i} exact path={path} render={routeRenderer} />
               ))}
               <NotFoundRoute />

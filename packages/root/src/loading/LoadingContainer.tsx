@@ -1,5 +1,6 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, useState, useEffect } from "react";
 
+import { usePrevious } from "lib/utilsHooks";
 import Loading from "loading/Loading";
 import BackgroundLoading from "loading/BackgroundLoading";
 
@@ -8,14 +9,6 @@ interface IProps {
   delay?: number;
   error?: any;
   background?: boolean;
-}
-
-function usePrevious(value: any) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
 }
 
 const LoadingContainer: FC<IProps> = ({

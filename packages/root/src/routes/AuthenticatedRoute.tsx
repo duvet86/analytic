@@ -4,6 +4,7 @@ import { Redirect, Route } from "react-router";
 
 import { getTokenFromSession } from "lib/authApi";
 import { IRouteProps } from "routes/types";
+import { login } from "routes/routes";
 
 const AuthenticatedRoute: SFC<IRouteProps> = ({ component, ...props }) => {
   const boundRender = (routeProps: RouteComponentProps) =>
@@ -12,7 +13,7 @@ const AuthenticatedRoute: SFC<IRouteProps> = ({ component, ...props }) => {
     ) : (
       <Redirect
         to={{
-          pathname: "/login",
+          pathname: login,
           state: { from: routeProps.location }
         }}
       />

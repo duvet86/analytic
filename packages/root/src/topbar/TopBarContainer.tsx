@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import { clearToken } from "lib/sessionStorageApi";
+import { portal, profile, login } from "routes/routes";
 import TopBar from "topbar/TopBar";
 
 interface IOwnProps {
@@ -23,18 +24,18 @@ const TopBarContainer: FC<Props> = ({ history, handleDrawerOpen }) => {
 
   const onWelcomePageClickHandler = () => {
     onMenuCloseHandler();
-    history.push("/");
+    history.push(portal);
   };
 
   const onProfileClickHandler = () => {
     onMenuCloseHandler();
-    history.push("/profile");
+    history.push(profile);
   };
 
   const onLogoutClickHandler = () => {
     onMenuCloseHandler();
     clearToken();
-    history.push("/login");
+    history.push(login);
   };
 
   return (

@@ -1,6 +1,14 @@
 import React from "react";
+import {
+  portal,
+  itemsManager,
+  pageBuildeExisting,
+  workbenchExisting,
+  profile
+} from "routes/routes";
 
 const WelcomePageAsync = React.lazy(() => import("portal/PortalContainer"));
+const ItemsManagerAsync = React.lazy(() => import("@trimble/items-manager"));
 const WorkbenchContainerAsync = React.lazy(() =>
   import("portal/PortalContainer")
 );
@@ -12,29 +20,30 @@ const ProfileContainerAsync = React.lazy(() =>
 );
 
 const renderWelcomePageAsync = () => <WelcomePageAsync />;
+const renderItemsManagerAsync = () => <ItemsManagerAsync />;
 const renderPagebuilderContainerAsync = () => <PagebuilderContainerAsync />;
 const renderWorkbenchContainerAsync = () => <WorkbenchContainerAsync />;
 const renderProfileContainerAsync = () => <ProfileContainerAsync />;
 
-export const routeRenderers = [
+export const routeComponents = [
   {
     routeRenderer: renderWelcomePageAsync,
-    path: "/"
+    path: portal
   },
   {
-    routeRenderer: renderWelcomePageAsync,
-    path: "/itemsmanager"
+    routeRenderer: renderItemsManagerAsync,
+    path: itemsManager
   },
   {
     routeRenderer: renderPagebuilderContainerAsync,
-    path: "/pagebuilder/:id"
+    path: pageBuildeExisting
   },
   {
     routeRenderer: renderWorkbenchContainerAsync,
-    path: "/workbench/:id"
+    path: workbenchExisting
   },
   {
     routeRenderer: renderProfileContainerAsync,
-    path: "/profile"
+    path: profile
   }
 ];

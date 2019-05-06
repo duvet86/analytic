@@ -1,0 +1,11 @@
+export const portal = "/";
+export const login = "/login";
+export const itemsManager = "/itemsmanager";
+export const pageBuilderNew = "/pagebuilder/new";
+export const pageBuildeExisting = "/pagebuilder/:id";
+export const workbenchNew = "/workbench/new";
+export const workbenchExisting = "/workbench/:id";
+export const configureSystem = "/configure";
+export const profile = "/profile";
+export const contact = "/contact";
+export const info = "/info";
