@@ -1,9 +1,14 @@
 import React, { FC, useState, ChangeEvent } from "react";
+import { RouteComponentProps } from "react-router";
 
 import Portal from "portal/Portal";
 import linksList from "portal/linksList";
 
-const PortalContainer: FC = () => {
+interface IProps extends RouteComponentProps {
+  isOpen: boolean;
+}
+
+const PortalContainer: FC<IProps> = ({ isOpen }) => {
   const [searchText, setSearchText] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -16,6 +21,7 @@ const PortalContainer: FC = () => {
 
   return (
     <Portal
+      isOpen={isOpen}
       searchText={searchText}
       handleChange={handleChange}
       visibleLinks={visibleLinks}

@@ -1,10 +1,5 @@
 import React, { FC } from "react";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 
 import FolderContainer from "sidebar/folder/FolderContainer";
@@ -18,7 +13,7 @@ interface IProps extends WithStyles<typeof styles> {
 const styles = () =>
   createStyles({
     listContainer: {
-      width: "100%"
+      width: 312
     }
   });
 

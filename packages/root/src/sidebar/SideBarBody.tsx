@@ -11,6 +11,7 @@ interface IProps extends WithStyles<typeof styles> {
 const styles = createStyles({
   bodyContainer: {
     height: "100%",
+    width: 312,
     display: "flex",
     overflow: "auto"
   }

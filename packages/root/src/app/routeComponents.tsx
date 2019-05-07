@@ -1,4 +1,6 @@
-import React from "react";
+import React, { ComponentType } from "react";
+import { RouteComponentProps } from "react-router";
+
 import {
   portal,
   itemsManager,
@@ -7,8 +9,16 @@ import {
   profile
 } from "routes/routes";
 
-const WelcomePageAsync = React.lazy(() => import("portal/PortalContainer"));
-const ItemsManagerAsync = React.lazy(() => import("@trimble/items-manager"));
+interface IProps extends RouteComponentProps {
+  isOpen: boolean;
+}
+
+const WelcomePageAsync = React.lazy<ComponentType<IProps>>(() =>
+  import("portal/PortalContainer")
+);
+const ItemsManagerAsync = React.lazy<ComponentType<IProps>>(() =>
+  import("@trimble/items-manager")
+);
 const WorkbenchContainerAsync = React.lazy(() =>
   import("portal/PortalContainer")
 );
@@ -19,31 +29,25 @@ const ProfileContainerAsync = React.lazy(() =>
   import("profile/ProfileContainer")
 );
 
-const renderWelcomePageAsync = () => <WelcomePageAsync />;
-const renderItemsManagerAsync = () => <ItemsManagerAsync />;
-const renderPagebuilderContainerAsync = () => <PagebuilderContainerAsync />;
-const renderWorkbenchContainerAsync = () => <WorkbenchContainerAsync />;
-const renderProfileContainerAsync = () => <ProfileContainerAsync />;
-
 export const routeComponents = [
   {
-    routeRenderer: renderWelcomePageAsync,
+    Component: WelcomePageAsync,
     path: portal
   },
   {
-    routeRenderer: renderItemsManagerAsync,
+    Component: ItemsManagerAsync,
     path: itemsManager
   },
   {
-    routeRenderer: renderPagebuilderContainerAsync,
+    Component: PagebuilderContainerAsync,
     path: pageBuildeExisting
   },
   {
-    routeRenderer: renderWorkbenchContainerAsync,
+    Component: WorkbenchContainerAsync,
     path: workbenchExisting
   },
   {
-    routeRenderer: renderProfileContainerAsync,
+    Component: ProfileContainerAsync,
     path: profile
   }
 ];
