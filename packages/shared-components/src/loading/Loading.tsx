@@ -2,7 +2,7 @@ import React, { SFC } from "react";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-import BaseLoading from "loading/BaseLoading";
+import BaseLoading from "@trimble-shared-components/loading/BaseLoading";
 
 interface IProps extends WithStyles<typeof styles> {
   error: any;

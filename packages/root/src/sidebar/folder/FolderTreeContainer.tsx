@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import LoadingContainer from "loading/LoadingContainer";
+import { LoadingContainer } from "@trimble/shared-components";
 import FolderTree from "sidebar/folder/FolderTree";
 
 import { useDataApi } from "lib/useDataApi";

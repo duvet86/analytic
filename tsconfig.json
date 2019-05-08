@@ -65,7 +65,8 @@
     "skipLibCheck": true,
     "paths": {
       "*": ["root/src/*"],
-      "@trimble-items/*": ["trimble-items/src/*"]
+      "@trimble-items/*": ["trimble-items/src/*"],
+      "@trimble-shared-components/*": ["shared-components/src/*"]
     }
   },
   "exclude": ["node_modules", "packages/**/node_modules"]

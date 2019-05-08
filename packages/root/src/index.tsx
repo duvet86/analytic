@@ -12,7 +12,7 @@ import { portal, login } from "routes/routes";
 import configureTheme from "lib/configureTheme";
 import history from "lib/history";
 import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
-import LoadAsync from "loading/LoadAsync";
+import { LoadAsync } from "@trimble/shared-components";
 import AnonymousRoute from "routes/AnonymousRoute";
 import AuthenticatedRoute from "routes/AuthenticatedRoute";
 import * as serviceWorker from "serviceWorker";

@@ -9,7 +9,7 @@ import {
 import Drawer from "@material-ui/core/Drawer";
 
 import { IFolderChild } from "sidebar/types";
-import LoadingContainer from "loading/LoadingContainer";
+import { LoadingContainer } from "@trimble/shared-components";
 import SidebarTabs from "sidebar/SidebarTabs";
 import SidebarBody from "sidebar/SidebarBody";
 

@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { routeComponents } from "app/routeComponents";
 
 import TopBarContainer from "topbar/TopBarContainer";
-import LoadAsync from "loading/LoadAsync";
+import { LoadAsync } from "@trimble/shared-components";
 import NotFoundRoute from "routes/NotFoundRoute";
 
 interface IProps {

@@ -2,7 +2,7 @@ import React, { Fragment, SFC } from "react";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
-import BaseLoading from "loading/BaseLoading";
+import BaseLoading from "@trimble-shared-components/loading/BaseLoading";
 
 interface IProps extends WithStyles<typeof styles> {
   isLoading: boolean;

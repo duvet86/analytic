@@ -10,7 +10,7 @@ import { RouteComponentProps } from "react-router";
 
 import { getTokenAsync } from "lib/authApi";
 import { storeToken } from "lib/sessionStorageApi";
-import LoadingContainer from "loading/LoadingContainer";
+import { LoadingContainer } from "@trimble/shared-components";
 import Login from "login/Login";
 
 const handleMouseDownPassword = (e: MouseEvent) => {
