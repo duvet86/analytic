@@ -1,10 +1,7 @@
+import List from "@material-ui/core/List";
 import React, { FC } from "react";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-
-import FolderContainer from "sidebar/folder/FolderContainer";
-import Item from "sidebar/folder/Item";
-import { IFolderChild } from "sidebar/types";
+import { FolderContainer, IFolderChild, Item } from "@trimble/shared-components";
 
 interface IProps extends WithStyles<typeof styles> {
   folderList: IFolderChild[];

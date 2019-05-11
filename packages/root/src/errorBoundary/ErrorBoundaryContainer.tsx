@@ -1,8 +1,7 @@
-import React, { Component, ErrorInfo } from "react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-
-import Log from "lib/Log";
 import ErrorBoundary from "errorBoundary/ErrorBoundary";
+import Log from "lib/Log";
+import React, { Component, ErrorInfo } from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface IState {
   error: any;

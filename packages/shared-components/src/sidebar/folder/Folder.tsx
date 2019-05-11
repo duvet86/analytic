@@ -1,25 +1,23 @@
+import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandMore";
+import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
+import FolderContainer from "@trimble-shared-components/sidebar/folder/FolderContainer";
+import FolderIcon from "@material-ui/icons/Folder";
+import FolderOpenIcon from "@material-ui/icons/FolderOpen";
+import Item from "@trimble-shared-components/sidebar/folder/Item";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import React, { SFC } from "react";
 import {
   createStyles,
   Theme,
   withStyles,
   WithStyles
-} from "@material-ui/core/styles";
+  } from "@material-ui/core/styles";
+import { IFolderChild } from "@trimble-shared-components/sidebar/types";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
-import Collapse from "@material-ui/core/Collapse";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-
-import { IFolderChild } from "sidebar/types";
-import Item from "sidebar/folder/Item";
-import FolderContainer from "sidebar/folder/FolderContainer";
-
-import FolderIcon from "@material-ui/icons/Folder";
-import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import ExpandLess from "@material-ui/icons/ExpandMore";
-import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
 
 interface IProps extends WithStyles<typeof styles, true> {
   label: string;

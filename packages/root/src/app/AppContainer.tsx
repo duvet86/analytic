@@ -1,6 +1,5 @@
-import React, { FC, useState } from "react";
-
 import App from "app/App";
+import React, { FC, useState } from "react";
 
 const AppContainer: FC = () => {
   const [isOpen, setIsOpen] = useState(true);

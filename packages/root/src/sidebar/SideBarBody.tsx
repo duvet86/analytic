@@ -1,26 +1,28 @@
-import React, { SFC } from "react";
+import React, { ChangeEvent, FC } from "react";
+import SidebarFolderTree from "sidebar/SidebarFolderTree";
+import SidebarTabs from "sidebar/SidebarTabs";
+import { IFolderChild } from "@trimble/shared-components";
+import { LoadingContainer } from "@trimble/shared-components";
 
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-import FolderTree from "sidebar/folder/FolderTree";
-import { IFolderChild } from "sidebar/types";
-
-interface IProps extends WithStyles<typeof styles> {
+interface IProps {
+  isLoading: boolean;
+  selectedTab: 0 | 1 | 2;
   folderList: IFolderChild[];
+  handleChange: (_: ChangeEvent<{}>, value: 0 | 1 | 2) => void;
 }
 
-const styles = createStyles({
-  bodyContainer: {
-    height: "100%",
-    width: 312,
-    display: "flex",
-    overflow: "auto"
-  }
-});
-
-const SidebarBody: SFC<IProps> = ({ classes, folderList }) => (
-  <div className={classes.bodyContainer}>
-    <FolderTree folderList={folderList} />
-  </div>
+const SidebarBody: FC<IProps> = ({
+  isLoading,
+  selectedTab,
+  folderList,
+  handleChange
+}) => (
+  <>
+    <SidebarTabs selectedTab={selectedTab} handleChange={handleChange} />
+    <LoadingContainer isLoading={isLoading}>
+      <SidebarFolderTree folderList={folderList} />
+    </LoadingContainer>
+  </>
 );
 
-export default withStyles(styles)(SidebarBody);
+export default SidebarBody;

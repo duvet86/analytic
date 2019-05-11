@@ -1,21 +1,19 @@
-import "typeface-roboto";
-import "index.css";
-
-import React, { lazy, ComponentType } from "react";
-import { render } from "react-dom";
-import { Switch, RouteComponentProps } from "react-router";
-import { Router } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-
-import { portal, login } from "routes/routes";
-import configureTheme from "lib/configureTheme";
-import history from "lib/history";
-import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
-import { LoadAsync } from "@trimble/shared-components";
+import * as serviceWorker from "serviceWorker";
 import AnonymousRoute from "routes/AnonymousRoute";
 import AuthenticatedRoute from "routes/AuthenticatedRoute";
-import * as serviceWorker from "serviceWorker";
+import configureTheme from "lib/configureTheme";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
+import history from "lib/history";
+import React, { ComponentType, lazy } from "react";
+import { LoadAsync } from "@trimble/shared-components";
+import { login, portal } from "routes/routes";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { render } from "react-dom";
+import { RouteComponentProps, Switch } from "react-router";
+import { Router } from "react-router-dom";
+import "index.css";
+import "typeface-roboto";
 
 const theme = configureTheme();
 

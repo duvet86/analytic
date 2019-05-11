@@ -1,8 +1,7 @@
-import React, { FC, useState, ChangeEvent } from "react";
-import { RouteComponentProps } from "react-router";
-
-import Portal from "portal/Portal";
 import linksList from "portal/linksList";
+import Portal from "portal/Portal";
+import React, { ChangeEvent, FC, useState } from "react";
+import { RouteComponentProps } from "react-router";
 
 interface IProps extends RouteComponentProps {
   isOpen: boolean;

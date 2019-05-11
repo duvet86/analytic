@@ -1,9 +1,8 @@
-import { ComponentType } from "react";
-
-import { SvgIconProps } from "@material-ui/core/SvgIcon";
 import FolderIcon from "@material-ui/icons/Folder";
 import SharedWithMeIcon from "@material-ui/icons/People";
 import StarredIcon from "@material-ui/icons/Star";
+import { ComponentType } from "react";
+import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
 export interface ITab {
   label: string;

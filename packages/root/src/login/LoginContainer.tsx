@@ -1,17 +1,16 @@
+import Login from "login/Login";
 import React, {
+  ChangeEvent,
   FC,
   FormEvent,
-  ChangeEvent,
   MouseEvent,
-  useState,
-  useEffect
-} from "react";
-import { RouteComponentProps } from "react-router";
-
+  useEffect,
+  useState
+  } from "react";
 import { getTokenAsync } from "lib/authApi";
-import { storeToken } from "lib/sessionStorageApi";
 import { LoadingContainer } from "@trimble/shared-components";
-import Login from "login/Login";
+import { RouteComponentProps } from "react-router";
+import { storeToken } from "lib/sessionStorageApi";
 
 const handleMouseDownPassword = (e: MouseEvent) => {
   e.preventDefault();

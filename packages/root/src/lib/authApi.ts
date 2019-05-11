@@ -1,5 +1,4 @@
 import { encode } from "base-64";
-
 import { getAsync } from "lib/http";
 import { getToken } from "lib/sessionStorageApi";
 

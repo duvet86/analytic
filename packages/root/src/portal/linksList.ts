@@ -1,23 +1,23 @@
+import FolderIcon from "@material-ui/icons/Folder";
 import { ComponentType } from "react";
-import { SvgIconProps } from "@material-ui/core/SvgIcon";
 import {
+  ConfigureSessionIcon,
+  ContactUsIcon,
   DashboardIcon,
   DataViewIcon,
-  ConfigureSessionIcon,
-  ProfileIcon,
-  ContactUsIcon,
-  ProductInfoIcon
-} from "app/icons";
-import FolderIcon from "@material-ui/icons/Folder";
+  ProductInfoIcon,
+  ProfileIcon
+  } from "app/icons";
 import {
+  configureSystem,
+  contact,
+  info,
   itemsManager,
   pageBuilderNew,
-  workbenchNew,
-  configureSystem,
   profile,
-  contact,
-  info
-} from "routes/routes";
+  workbenchNew
+  } from "routes/routes";
+import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
 export interface IPortalLink {
   IconComponent: ComponentType<SvgIconProps>;

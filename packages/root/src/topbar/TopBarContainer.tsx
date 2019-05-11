@@ -1,9 +1,8 @@
 import React, { FC, useState } from "react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-
-import { clearToken } from "lib/sessionStorageApi";
-import { portal, profile, login } from "routes/routes";
 import TopBar from "topbar/TopBar";
+import { clearToken } from "lib/sessionStorageApi";
+import { login, portal, profile } from "routes/routes";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface IOwnProps {
   handleDrawerOpen: () => void;

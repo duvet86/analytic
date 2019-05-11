@@ -1,11 +1,11 @@
-import React, { FC, ChangeEvent } from "react";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-
-import SidebarContainer from "sidebar/SidebarContainer";
 import PortalAppCard from "portal/PortalAppCard";
+import React, { ChangeEvent, FC } from "react";
+import SidebarBodyContainer from "sidebar/SidebarBodyContainer";
+import TextField from "@material-ui/core/TextField";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import { IPortalLink } from "portal/linksList";
+import { SidebarContainer } from "@trimble/shared-components";
 
 interface IProps extends WithStyles<typeof styles> {
   isOpen: boolean;
@@ -32,7 +32,10 @@ const Portal: FC<IProps> = ({
   handleChange
 }) => (
   <div className={classes.bodyContainer}>
-    <SidebarContainer open={isOpen} />
+    <SidebarContainer
+      open={isOpen}
+      SidebarBodyComponent={SidebarBodyContainer}
+    />
     <div>
       <Grid container className={classes.container} spacing={16}>
         <Grid item xs={12}>

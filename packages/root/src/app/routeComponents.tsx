@@ -1,13 +1,12 @@
 import React, { ComponentType } from "react";
-import { RouteComponentProps } from "react-router";
-
 import {
-  portal,
   itemsManager,
   pageBuildeExisting,
-  workbenchExisting,
-  profile
-} from "routes/routes";
+  portal,
+  profile,
+  workbenchExisting
+  } from "routes/routes";
+import { RouteComponentProps } from "react-router";
 
 interface IProps extends RouteComponentProps {
   isOpen: boolean;

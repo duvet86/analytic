@@ -1,8 +1,7 @@
-import React, { FC, useState, ChangeEvent } from "react";
-
+import React, { ChangeEvent, FC, useState } from "react";
+import SidebarBody from "sidebar/SidebarBody";
+import { IFolderChild, ItemTypeIds } from "@trimble/shared-components";
 import { useDataApi } from "lib/useDataApi";
-import { IFolderChild, ItemTypeIds } from "sidebar/types";
-import Sidebar from "sidebar/Sidebar";
 
 const myItems = `api/useritems/myitems?tenant=${
   process.env.TENANT_ID
@@ -16,13 +15,9 @@ const sharedWithMe = `api/useritems/sharedwithme?tenant=${
   ItemTypeIds.USER_DATAVIEW
 }&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
 
-interface IProps {
-  open: boolean;
-}
-
 type State = 0 | 1 | 2;
 
-const SidebarContainer: FC<IProps> = ({ open }) => {
+const SidebarBodyContainer: FC = () => {
   const [{ isLoading, data }, setUrl] = useDataApi<IFolderChild[]>(myItems, []);
   const [selectedTab, setSelectedTab] = useState<State>(0);
 
@@ -44,9 +39,8 @@ const SidebarContainer: FC<IProps> = ({ open }) => {
   };
 
   return (
-    <Sidebar
+    <SidebarBody
       isLoading={isLoading}
-      open={open}
       selectedTab={selectedTab}
       folderList={data}
       handleChange={handleChange}
@@ -54,4 +48,4 @@ const SidebarContainer: FC<IProps> = ({ open }) => {
   );
 };
 
-export default SidebarContainer;
+export default SidebarBodyContainer;

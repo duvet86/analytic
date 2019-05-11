@@ -1,8 +1,7 @@
+import Folder from "@trimble-shared-components/sidebar/folder/Folder";
 import React, { FC, useState } from "react";
+import { IFolderChild } from "@trimble-shared-components/sidebar/types";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
-
-import { IFolderChild } from "sidebar/types";
-import Folder from "sidebar/folder/Folder";
 
 interface IProps {
   label: string;

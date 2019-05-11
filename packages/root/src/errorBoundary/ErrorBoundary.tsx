@@ -1,16 +1,14 @@
-import trimbleLogo from "topbar/trimbleLogo.png";
-
-import React, { FC } from "react";
-import { Link, LinkProps } from "react-router-dom";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import Button, { ButtonProps } from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import React, { FC } from "react";
+import trimbleLogo from "topbar/trimbleLogo.png";
 import Typography from "@material-ui/core/Typography";
-
-import { WarningIcon, ContactUsIcon, HomeIcon } from "app/icons";
+import { ContactUsIcon, HomeIcon, WarningIcon } from "app/icons";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
+import { Link, LinkProps } from "react-router-dom";
 
 interface IProps extends WithStyles<typeof styles> {
   errorMessage: string;

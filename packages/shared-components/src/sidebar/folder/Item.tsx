@@ -1,16 +1,15 @@
+import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import React, { SFC } from "react";
-import { NavLink } from "react-router-dom";
 import {
   createStyles,
   Theme,
   withStyles,
   WithStyles
-} from "@material-ui/core/styles";
-import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-
-import { ItemTypeIds } from "sidebar/types";
+  } from "@material-ui/core/styles";
 import { DashboardIcon, DataViewIcon } from "app/icons";
+import { ItemTypeIds } from "@trimble-shared-components/sidebar/types";
+import { NavLink } from "react-router-dom";
 
 interface IProps extends WithStyles<typeof styles, true> {
   itemTypeId: ItemTypeIds;

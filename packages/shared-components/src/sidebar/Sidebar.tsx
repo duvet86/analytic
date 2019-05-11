@@ -1,26 +1,18 @@
-import React, { FC, ChangeEvent } from "react";
 import classNames from "classnames";
+import Drawer from "@material-ui/core/Drawer";
+import React, { ComponentType, FC } from "react";
 import {
   createStyles,
+  Theme,
   withStyles,
-  WithStyles,
-  Theme
-} from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-
-import { IFolderChild } from "sidebar/types";
-import { LoadingContainer } from "@trimble/shared-components";
-import SidebarTabs from "sidebar/SidebarTabs";
-import SidebarBody from "sidebar/SidebarBody";
+  WithStyles
+  } from "@material-ui/core/styles";
 
 const drawerWidth = 312;
 
 interface IProps extends WithStyles<typeof styles> {
-  isLoading: boolean;
   open: boolean;
-  selectedTab: 0 | 1 | 2;
-  folderList: IFolderChild[];
-  handleChange: (_: ChangeEvent<{}>, value: 0 | 1 | 2) => void;
+  SidebarBodyComponent: ComponentType;
 }
 
 const styles = (theme: Theme) =>
@@ -57,14 +49,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-const Sidebar: FC<IProps> = ({
-  classes,
-  isLoading,
-  open,
-  selectedTab,
-  folderList,
-  handleChange
-}) => (
+const Sidebar: FC<IProps> = ({ classes, open, SidebarBodyComponent }) => (
   <Drawer
     className={classNames(classes.drawer, !open && classes.drawerClose)}
     variant="permanent"
@@ -74,10 +59,7 @@ const Sidebar: FC<IProps> = ({
     open={open}
   >
     <div className={classes.bodyContainer}>
-      <SidebarTabs selectedTab={selectedTab} handleChange={handleChange} />
-      <LoadingContainer isLoading={isLoading}>
-        <SidebarBody folderList={folderList} />
-      </LoadingContainer>
+      <SidebarBodyComponent />
     </div>
   </Drawer>
 );

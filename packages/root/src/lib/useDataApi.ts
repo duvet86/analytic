@@ -1,15 +1,14 @@
+import history from "lib/history";
+import { clearToken } from "lib/sessionStorageApi";
 import {
-  useState,
+  Dispatch,
+  Reducer,
+  SetStateAction,
   useEffect,
   useReducer,
-  Reducer,
-  Dispatch,
-  SetStateAction
-} from "react";
-
-import { clearToken } from "lib/sessionStorageApi";
+  useState
+  } from "react";
 import { getWithJwtAsync } from "lib/http";
-import history from "lib/history";
 import { login } from "routes/routes";
 
 const enum DataFetchActionTypes {

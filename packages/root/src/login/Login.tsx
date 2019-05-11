@@ -1,12 +1,3 @@
-import trimbleLogo from "topbar/trimbleLogo.png";
-
-import React, { ChangeEvent, FC, FormEvent, MouseEvent } from "react";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
@@ -15,10 +6,22 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
+import React, {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  MouseEvent
+  } from "react";
+import trimbleLogo from "topbar/trimbleLogo.png";
 import Typography from "@material-ui/core/Typography";
-
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles
+  } from "@material-ui/core/styles";
 
 interface IProps extends WithStyles<typeof styles> {
   isInvalidCredentials: boolean;

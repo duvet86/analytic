@@ -1,8 +1,6 @@
-import React, { FC } from "react";
-
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-
+import React, { FC } from "react";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import { IUserInfo } from "profile/types";
 
 interface IProps extends WithStyles<typeof styles> {
