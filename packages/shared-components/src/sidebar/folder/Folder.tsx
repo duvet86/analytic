@@ -10,16 +10,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import React, { SFC } from "react";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-  } from "@material-ui/core/styles";
 import { IFolderChild } from "@trimble-shared-components/sidebar/types";
+import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
-interface IProps extends WithStyles<typeof styles, true> {
+interface IProps {
   label: string;
   handleClick: () => void;
   expanded: boolean;
@@ -29,31 +24,34 @@ interface IProps extends WithStyles<typeof styles, true> {
   disabled?: boolean;
 }
 
-const styles = (theme: Theme) =>
-  createStyles({
-    icon: {
-      color: "#696969"
-    },
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular
-    },
-    expand: {
-      marginRight: theme.spacing.unit
-    }
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  icon: {
+    color: "#696969"
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular
+  },
+  listItemIcon: {
+    minWidth: theme.spacing(4)
+  },
+  listItemIconExpand: {
+    minWidth: 0
+  }
+}));
 
 const Folder: SFC<IProps> = ({
-  classes,
   label,
   childFolders,
   handleClick,
   expanded,
   nested,
-  theme,
   CutomFolderIcon,
   disabled
 }) => {
+  const theme = useTheme();
+  const classes = useStyles();
+
   const icon =
     CutomFolderIcon != null ? (
       <CutomFolderIcon className={classes.icon} />
@@ -70,18 +68,20 @@ const Folder: SFC<IProps> = ({
         divider
         button
         onClick={handleClick}
-        style={{ paddingLeft: nested * theme.spacing.unit * 2 }}
+        style={{ paddingLeft: nested * theme.spacing(2) }}
       >
-        <ListItemIcon className={classes.expand}>
-          {expanded ? <ExpandLess /> : <ExpandMore />}
+        <ListItemIcon classes={{ root: classes.listItemIcon }}>
+          {icon}
         </ListItemIcon>
-        <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText
           primary={label}
           classes={{
             primary: classes.heading
           }}
         />
+        <ListItemIcon classes={{ root: classes.listItemIconExpand }}>
+          {expanded ? <ExpandLess /> : <ExpandMore />}
+        </ListItemIcon>
       </ListItem>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <List disablePadding component="nav">
@@ -116,4 +116,4 @@ const Folder: SFC<IProps> = ({
   );
 };
 
-export default withStyles(styles, { withTheme: true })(Folder);
+export default Folder;

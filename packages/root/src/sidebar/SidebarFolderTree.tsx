@@ -1,13 +1,13 @@
 import FolderTree from "sidebar/folder/FolderTree";
 import React, { SFC } from "react";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import { IFolderChild } from "@trimble/shared-components";
+import { makeStyles } from "@material-ui/core/styles";
 
-interface IProps extends WithStyles<typeof styles> {
+interface IProps {
   folderList: IFolderChild[];
 }
 
-const styles = createStyles({
+const useStyles = makeStyles({
   bodyContainer: {
     height: "100%",
     width: 312,
@@ -16,10 +16,14 @@ const styles = createStyles({
   }
 });
 
-const SidebarFolderTree: SFC<IProps> = ({ classes, folderList }) => (
-  <div className={classes.bodyContainer}>
-    <FolderTree folderList={folderList} />
-  </div>
-);
+const SidebarFolderTree: SFC<IProps> = ({ folderList }) => {
+  const classes = useStyles();
 
-export default withStyles(styles)(SidebarFolderTree);
+  return (
+    <div className={classes.bodyContainer}>
+      <FolderTree folderList={folderList} />
+    </div>
+  );
+};
+
+export default SidebarFolderTree;

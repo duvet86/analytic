@@ -3,18 +3,18 @@ import PortalAppCard from "portal/PortalAppCard";
 import React, { ChangeEvent, FC } from "react";
 import SidebarBodyContainer from "sidebar/SidebarBodyContainer";
 import TextField from "@material-ui/core/TextField";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import { IPortalLink } from "portal/linksList";
+import { makeStyles } from "@material-ui/core/styles";
 import { SidebarContainer } from "@trimble/shared-components";
 
-interface IProps extends WithStyles<typeof styles> {
+interface IProps {
   isOpen: boolean;
   visibleLinks: IPortalLink[];
   searchText: string;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const styles = createStyles({
+const useStyles = makeStyles({
   container: {
     padding: "0 25px 25px 25px"
   },
@@ -25,36 +25,39 @@ const styles = createStyles({
 });
 
 const Portal: FC<IProps> = ({
-  classes,
   isOpen,
   visibleLinks,
   searchText,
   handleChange
-}) => (
-  <div className={classes.bodyContainer}>
-    <SidebarContainer
-      open={isOpen}
-      SidebarBodyComponent={SidebarBodyContainer}
-    />
-    <div>
-      <Grid container className={classes.container} spacing={16}>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            margin="dense"
-            label="Search"
-            value={searchText}
-            onChange={handleChange}
-          />
-        </Grid>
-        {visibleLinks.map((link, i) => (
-          <Grid item md={4} xs={12} key={i}>
-            <PortalAppCard {...link} />
-          </Grid>
-        ))}
-      </Grid>
-    </div>
-  </div>
-);
+}) => {
+  const classes = useStyles();
 
-export default withStyles(styles)(Portal);
+  return (
+    <div className={classes.bodyContainer}>
+      <SidebarContainer
+        open={isOpen}
+        SidebarBodyComponent={SidebarBodyContainer}
+      />
+      <div>
+        <Grid container className={classes.container} spacing={6}>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              margin="dense"
+              label="Search"
+              value={searchText}
+              onChange={handleChange}
+            />
+          </Grid>
+          {visibleLinks.map((link, i) => (
+            <Grid item md={4} xs={12} key={i}>
+              <PortalAppCard {...link} />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+    </div>
+  );
+};
+
+export default Portal;

@@ -1,29 +1,32 @@
 import Grid from "@material-ui/core/Grid";
 import React, { FC } from "react";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import { IUserInfo } from "profile/types";
+import { makeStyles } from "@material-ui/core/styles";
 
-interface IProps extends WithStyles<typeof styles> {
+interface IProps {
   userInfo: IUserInfo;
 }
 
-const styles = createStyles({
+const useStyles = makeStyles({
   container: {
     padding: 25
   }
 });
 
 const Profile: FC<IProps> = ({
-  classes,
   userInfo: {
     Profile: { UserName }
   }
-}) => (
-  <Grid container className={classes.container}>
-    <Grid item xs={12}>
-      {UserName}
-    </Grid>
-  </Grid>
-);
+}) => {
+  const classes = useStyles();
 
-export default withStyles(styles)(Profile);
+  return (
+    <Grid container className={classes.container}>
+      <Grid item xs={12}>
+        {UserName}
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Profile;

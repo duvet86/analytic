@@ -8,16 +8,11 @@ import React, { FC } from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import trimbleLogo from "topbar/trimbleLogo.png";
 import Typography from "@material-ui/core/Typography";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-  } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import { ProfileIcon } from "app/icons";
 
-interface IProps extends WithStyles<typeof styles> {
+interface IProps {
   anchorEl: HTMLElement | undefined;
   open: boolean;
   onMenuClickHandler: (event: React.MouseEvent<HTMLElement>) => void;
@@ -28,30 +23,28 @@ interface IProps extends WithStyles<typeof styles> {
   handleDrawerOpen: React.ReactEventHandler;
 }
 
-const styles = (theme: Theme) =>
-  createStyles({
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1
-    },
-    trimbleLogo: {
-      height: "36px",
-      padding: "4px 0"
-    },
-    iconContainer: {
-      display: "flex",
-      alignItems: "center"
-    },
-    matchColor: {
-      color: "#01609d",
-      textTransform: "uppercase"
-    },
-    toolBar: {
-      justifyContent: "space-between"
-    }
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  },
+  trimbleLogo: {
+    height: "36px",
+    padding: "4px 0"
+  },
+  iconContainer: {
+    display: "flex",
+    alignItems: "center"
+  },
+  matchColor: {
+    color: "#01609d",
+    textTransform: "uppercase"
+  },
+  toolBar: {
+    justifyContent: "space-between"
+  }
+}));
 
 const TopBar: FC<IProps> = ({
-  classes,
   anchorEl,
   open,
   onMenuClickHandler,
@@ -61,54 +54,58 @@ const TopBar: FC<IProps> = ({
   onProfileClickHandler,
   handleDrawerOpen,
   ...props
-}) => (
-  <AppBar position="relative" className={classes.appBar} {...props}>
-    <Toolbar disableGutters variant="dense" className={classes.toolBar}>
-      <div className={classes.iconContainer}>
-        <IconButton
-          className={classes.matchColor}
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Link to="/">
-          <img
-            src={trimbleLogo}
-            className={classes.trimbleLogo}
-            alt="trimbleLogo"
-          />
-        </Link>
-      </div>
-      <Typography variant="h6" className={classes.matchColor}>
-        Analytics Tools
-      </Typography>
-      <div>
-        <Button color="inherit" onClick={onMenuClickHandler}>
-          <ProfileIcon className={classes.matchColor} />
-        </Button>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          getContentAnchorEl={undefined}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right"
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right"
-          }}
-          open={open}
-          onClose={onMenuCloseHandler}
-        >
-          <MenuItem onClick={onWelcomePageClickHandler}>Portal</MenuItem>
-          <MenuItem onClick={onProfileClickHandler}>Profile</MenuItem>
-          <MenuItem onClick={onLogoutClickHandler}>Sign Out</MenuItem>
-        </Menu>
-      </div>
-    </Toolbar>
-  </AppBar>
-);
+}) => {
+  const classes = useStyles();
 
-export default withStyles(styles)(TopBar);
+  return (
+    <AppBar position="relative" className={classes.appBar} {...props}>
+      <Toolbar disableGutters variant="dense" className={classes.toolBar}>
+        <div className={classes.iconContainer}>
+          <IconButton
+            className={classes.matchColor}
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Link to="/">
+            <img
+              src={trimbleLogo}
+              className={classes.trimbleLogo}
+              alt="trimbleLogo"
+            />
+          </Link>
+        </div>
+        <Typography variant="h6" className={classes.matchColor}>
+          Analytics Tools
+        </Typography>
+        <div>
+          <Button color="inherit" onClick={onMenuClickHandler}>
+            <ProfileIcon className={classes.matchColor} />
+          </Button>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            getContentAnchorEl={undefined}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right"
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right"
+            }}
+            open={open}
+            onClose={onMenuCloseHandler}
+          >
+            <MenuItem onClick={onWelcomePageClickHandler}>Portal</MenuItem>
+            <MenuItem onClick={onProfileClickHandler}>Profile</MenuItem>
+            <MenuItem onClick={onLogoutClickHandler}>Sign Out</MenuItem>
+          </Menu>
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default TopBar;

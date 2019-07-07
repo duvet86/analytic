@@ -4,9 +4,6 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const configureTheme = () =>
   createMuiTheme({
-    typography: {
-      useNextVariants: true
-    },
     palette: {
       primary: amber,
       secondary: { light: blue[600], main: blue[900], dark: blue[900] }
