@@ -14,11 +14,6 @@ interface IProps {
 }
 
 const useStyles = makeStyles(({ typography }: Theme) => ({
-  item: {
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis"
-  },
   icon: {
     color: "#696969"
   },
@@ -50,8 +45,8 @@ const Item: SFC<IProps> = ({ itemTypeId, itemId, label, nested }) => {
     <ListItem
       divider
       button
+      disableGutters
       component={workbenchLink(itemTypeId, itemId)}
-      className={classes.item}
       style={{ paddingLeft: nested * theme.spacing(2) }}
     >
       {itemTypeId.toUpperCase() === ItemTypeIds.PAGE_BUILDER ? (

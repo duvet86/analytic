@@ -27,10 +27,10 @@ const SidebarBodyContainer: FC = () => {
         setUrl(myItems);
         break;
       case 1:
-        setUrl(sharedWithMe);
+        setUrl(myItems);
         break;
       case 2:
-        setUrl(myItems);
+        setUrl(sharedWithMe);
         break;
       default:
         throw new Error();

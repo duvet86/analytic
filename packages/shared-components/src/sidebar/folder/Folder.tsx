@@ -67,6 +67,7 @@ const Folder: SFC<IProps> = ({
         disabled={disabled}
         divider
         button
+        disableGutters
         onClick={handleClick}
         style={{ paddingLeft: nested * theme.spacing(2) }}
       >
