@@ -66,8 +66,3 @@ export interface IFolderChild {
   ChildItem: IItemDtc;
   OwnerUsername: string;
 }
-
-export interface ISideBarItems {
-  myItems: IFolderChild[];
-  sharedWithMe: IFolderChild[];
-}

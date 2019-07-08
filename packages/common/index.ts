@@ -10,8 +10,8 @@ export {
 
 export { default as Item } from "@trimble-common/folder/Item";
 
+export * from "@trimble-common/folder/types";
+
 export {
   default as SidebarContainer
 } from "@trimble-common/sidebar/SidebarContainer";
-
-export * from "@trimble-common/sidebar/types";

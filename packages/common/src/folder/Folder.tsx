@@ -11,7 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import React, { SFC } from "react";
-import { IFolderChild } from "@trimble-common/sidebar/types";
+import { IFolderChild } from "@trimble-common/folder/types";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
