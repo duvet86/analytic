@@ -3,6 +3,12 @@ import SidebarBody from "sidebar/SidebarBody";
 import { IFolderChild, ItemTypeIds } from "@trimble/common";
 import { useDataApi } from "lib/useDataApi";
 
+const starred = `api/useritems/starred?tenant=${
+  process.env.TENANT_ID
+}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
+  ItemTypeIds.USER_DATAVIEW
+}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
+
 const myItems = `api/useritems/myitems?tenant=${
   process.env.TENANT_ID
 }&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
@@ -18,13 +24,13 @@ const sharedWithMe = `api/useritems/sharedwithme?tenant=${
 type State = 0 | 1 | 2;
 
 const SidebarBodyContainer: FC = () => {
-  const [{ isLoading, data }, setUrl] = useDataApi<IFolderChild[]>(myItems, []);
+  const [{ isLoading, data }, setUrl] = useDataApi<IFolderChild[]>(starred, []);
   const [selectedTab, setSelectedTab] = useState<State>(0);
 
   const handleChange = (_: ChangeEvent<{}>, value: State) => {
     switch (value) {
       case 0:
-        setUrl(myItems);
+        setUrl(starred);
         break;
       case 1:
         setUrl(myItems);

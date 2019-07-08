@@ -35,10 +35,8 @@ const LoadingContainer: FC<IProps> = ({
       clearTimeout = setDelay(delay || 200);
     }
 
-    return function cleanup() {
-      window.clearTimeout(clearTimeout);
-    };
-  }, [prevIsLoading, isLoading, pastDelay]);
+    return () => window.clearTimeout(clearTimeout);
+  }, []);
 
   return background ? (
     <BackgroundLoading
