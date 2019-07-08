@@ -1,8 +1,7 @@
-import React, { FC, useState, useEffect } from "react";
-
+import BackgroundLoading from "@trimble-common/loading/BackgroundLoading";
+import Loading from "@trimble-common/loading/Loading";
+import React, { FC, useEffect, useState } from "react";
 import { usePrevious } from "lib/utilsHooks";
-import Loading from "@trimble-shared-components/loading/Loading";
-import BackgroundLoading from "@trimble-shared-components/loading/BackgroundLoading";
 
 interface IProps {
   isLoading: boolean;

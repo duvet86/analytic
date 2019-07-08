@@ -1,6 +1,6 @@
-import BaseLoading from "@trimble-shared-components/loading/BaseLoading";
+import BaseLoading from "@trimble-common/loading/BaseLoading";
 import Paper from "@material-ui/core/Paper";
-import React, { Fragment, SFC } from "react";
+import React, { SFC } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 interface IProps {

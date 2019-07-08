@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import SidebarBody from "sidebar/SidebarBody";
-import { IFolderChild, ItemTypeIds } from "@trimble/shared-components";
+import { IFolderChild, ItemTypeIds } from "@trimble/common";
 import { useDataApi } from "lib/useDataApi";
 
 const myItems = `api/useritems/myitems?tenant=${

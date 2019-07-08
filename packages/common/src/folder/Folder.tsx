@@ -1,16 +1,17 @@
 import Collapse from "@material-ui/core/Collapse";
+import EmptyFolder from "@trimble-common/folder/EmptyFolder";
 import ExpandLess from "@material-ui/icons/ExpandMore";
 import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
-import FolderContainer from "@trimble-shared-components/sidebar/folder/FolderContainer";
+import FolderContainer from "@trimble-common/folder/FolderContainer";
 import FolderIcon from "@material-ui/icons/Folder";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import Item from "@trimble-shared-components/sidebar/folder/Item";
+import Item from "@trimble-common/folder/Item";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import React, { SFC } from "react";
-import { IFolderChild } from "@trimble-shared-components/sidebar/types";
+import { IFolderChild } from "@trimble-common/sidebar/types";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
@@ -86,30 +87,34 @@ const Folder: SFC<IProps> = ({
       </ListItem>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <List disablePadding component="nav">
-          {childFolders.map(
-            ({
-              ChildType,
-              ChildFolderId,
-              ChildFolder,
-              ChildItemId,
-              ChildItem
-            }) =>
-              ChildType === "F" ? (
-                <FolderContainer
-                  nested={nested + 1}
-                  key={ChildFolderId}
-                  label={ChildFolder.Label}
-                  childFolders={ChildFolder.Children}
-                />
-              ) : (
-                <Item
-                  nested={nested + 1}
-                  key={ChildItemId}
-                  itemTypeId={ChildItem.ItemTypeId}
-                  itemId={ChildItem.ItemId}
-                  label={ChildItem.Label}
-                />
-              )
+          {childFolders.length === 0 ? (
+            <EmptyFolder nested={nested + 1} />
+          ) : (
+            childFolders.map(
+              ({
+                ChildType,
+                ChildFolderId,
+                ChildFolder,
+                ChildItemId,
+                ChildItem
+              }) =>
+                ChildType === "F" ? (
+                  <FolderContainer
+                    nested={nested + 1}
+                    key={ChildFolderId}
+                    label={ChildFolder.Label}
+                    childFolders={ChildFolder.Children}
+                  />
+                ) : (
+                  <Item
+                    nested={nested + 1}
+                    key={ChildItemId}
+                    itemTypeId={ChildItem.ItemTypeId}
+                    itemId={ChildItem.ItemId}
+                    label={ChildItem.Label}
+                  />
+                )
+            )
           )}
         </List>
       </Collapse>

@@ -1,5 +1,5 @@
 {
-  "name": "@trimble/shared-components",
+  "name": "@trimble/common",
   "version": "0.0.1",
   "main": "src/index.tsx",
   "author": "luca",

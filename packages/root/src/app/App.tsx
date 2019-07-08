@@ -1,7 +1,7 @@
 import NotFoundRoute from "routes/NotFoundRoute";
 import React, { FC } from "react";
 import TopBarContainer from "topbar/TopBarContainer";
-import { LoadAsync } from "@trimble/shared-components";
+import { LoadAsync } from "@trimble/common";
 import { Route, Switch } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 import { routeComponents } from "app/routeComponents";

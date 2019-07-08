@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
 import history from "lib/history";
 import React, { ComponentType, lazy } from "react";
-import { LoadAsync } from "@trimble/shared-components";
+import { LoadAsync } from "@trimble/common";
 import { login, portal } from "routes/routes";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { render } from "react-dom";

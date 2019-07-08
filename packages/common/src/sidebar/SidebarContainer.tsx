@@ -1,5 +1,5 @@
 import React, { ComponentType, FC } from "react";
-import Sidebar from "@trimble-shared-components/sidebar/Sidebar";
+import Sidebar from "@trimble-common/sidebar/Sidebar";
 
 interface IProps {
   open: boolean;

@@ -1,4 +1,4 @@
-import BaseLoading from "@trimble-shared-components/loading/BaseLoading";
+import BaseLoading from "@trimble-common/loading/BaseLoading";
 import React, { SFC } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";

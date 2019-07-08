@@ -1,8 +1,7 @@
+import Loading from "@trimble-common/loading/Loading";
+import LoadingContainer from "@trimble-common/loading/LoadingContainer";
 import React from "react";
 import { create } from "react-test-renderer";
-
-import LoadingContainer from "@trimble-shared-components/loading/LoadingContainer";
-import Loading from "@trimble-shared-components/loading/Loading";
 
 // Mock setTimeout.
 jest.useFakeTimers();

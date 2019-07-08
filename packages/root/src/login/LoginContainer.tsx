@@ -8,7 +8,7 @@ import React, {
   useState
   } from "react";
 import { getTokenAsync } from "lib/authApi";
-import { LoadingContainer } from "@trimble/shared-components";
+import { LoadingContainer } from "@trimble/common";
 import { RouteComponentProps } from "react-router";
 import { storeToken } from "lib/sessionStorageApi";
 
