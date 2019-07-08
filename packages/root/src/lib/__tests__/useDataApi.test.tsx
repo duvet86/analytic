@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { render, wait } from "react-testing-library";
+import { render, wait } from "@testing-library/react";
 import { usePromise } from "lib/useDataApi";
 
 const TestComponent: FC<{ promise: Promise<any> }> = ({ promise }) => {
