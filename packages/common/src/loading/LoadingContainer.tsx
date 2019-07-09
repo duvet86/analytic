@@ -15,7 +15,7 @@ const LoadingContainer: FC<IProps> = ({
   error,
   isLoading,
   background,
-  children
+  children,
 }) => {
   const [pastDelay, setPastDelay] = useState(false);
   const prevIsLoading = usePrevious(isLoading);
@@ -36,21 +36,16 @@ const LoadingContainer: FC<IProps> = ({
     }
 
     return () => window.clearTimeout(clearTimeout);
-  }, [pastDelay, isLoading]);
+  }, [pastDelay, isLoading, delay, prevIsLoading]);
 
   return background ? (
-    <BackgroundLoading
-      isLoading={isLoading}
-      pastDelay={pastDelay}
-      children={children}
-    />
+    <BackgroundLoading isLoading={isLoading} pastDelay={pastDelay}>
+      {children}
+    </BackgroundLoading>
   ) : (
-    <Loading
-      isLoading={isLoading}
-      pastDelay={pastDelay}
-      children={children}
-      error={error}
-    />
+    <Loading isLoading={isLoading} pastDelay={pastDelay} error={error}>
+      {children}
+    </Loading>
   );
 };
 

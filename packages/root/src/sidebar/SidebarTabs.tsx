@@ -11,12 +11,12 @@ interface IProps {
 
 const useStyles = makeStyles({
   tabs: {
-    width: 312
+    width: 312,
   },
   tabRoot: {
     minWidth: 0,
-    minHeight: 36
-  }
+    minHeight: 36,
+  },
 });
 
 const SidebarTabs: SFC<IProps> = ({ selectedTab, handleChange }) => {
@@ -36,11 +36,10 @@ const SidebarTabs: SFC<IProps> = ({ selectedTab, handleChange }) => {
           key={i}
           icon={<Icon />}
           classes={{
-            root: classes.tabRoot
+            root: classes.tabRoot,
           }}
         />
       ))}
-      />
     </Tabs>
   );
 };

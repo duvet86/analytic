@@ -1,6 +1,6 @@
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import React, { forwardRef, SFC } from "react";
+import React, { forwardRef, Ref, SFC } from "react";
 import { DashboardIcon, DataViewIcon } from "app/icons";
 import { ItemTypeIds } from "@trimble-common/folder/types";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
@@ -15,14 +15,19 @@ interface IProps {
 
 const useStyles = makeStyles(({ typography }: Theme) => ({
   icon: {
-    color: "#696969"
+    color: "#696969",
   },
   heading: {
     paddingLeft: 5,
     fontSize: typography.pxToRem(15),
-    fontWeight: typography.fontWeightRegular
-  }
+    fontWeight: typography.fontWeightRegular,
+  },
 }));
+
+const createItemLink = (link: string) =>
+  function ItemLink(props: ListItemProps, ref: Ref<HTMLAnchorElement>) {
+    return <NavLink innerRef={ref} to={link} {...(props as NavLinkProps)} />;
+  };
 
 // The usage of React.forwardRef will no longer be required for react-router-dom v6.
 // see https://github.com/ReactTraining/react-router/issues/6056
@@ -32,9 +37,7 @@ const workbenchLink = (itemTypeId: ItemTypeIds, itemId: string) => {
       ? `/pagebuilder/${itemId}`
       : `/workbench/${itemId}`;
 
-  return forwardRef<HTMLAnchorElement, ListItemProps>((props, ref) => (
-    <NavLink innerRef={ref} to={link} {...props as NavLinkProps} />
-  ));
+  return forwardRef<HTMLAnchorElement, ListItemProps>(createItemLink(link));
 };
 
 const Item: SFC<IProps> = ({ itemTypeId, itemId, label, nested }) => {
@@ -57,7 +60,7 @@ const Item: SFC<IProps> = ({ itemTypeId, itemId, label, nested }) => {
       <ListItemText
         primary={label}
         classes={{
-          primary: classes.heading
+          primary: classes.heading,
         }}
       />
     </ListItem>
