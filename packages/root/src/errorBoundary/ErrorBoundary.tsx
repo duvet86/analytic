@@ -3,12 +3,12 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
-import React, { FC } from "react";
-import trimbleLogo from "topbar/trimbleLogo.png";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { ContactUsIcon, HomeIcon, WarningIcon } from "app/icons";
+import React, { FC } from "react";
 import { Link, LinkProps } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import trimbleLogo from "topbar/trimbleLogo.png";
 
 interface IProps {
   errorMessage: string;

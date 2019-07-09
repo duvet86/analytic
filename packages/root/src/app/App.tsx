@@ -1,10 +1,10 @@
-import NotFoundRoute from "routes/NotFoundRoute";
-import React, { FC } from "react";
-import TopBarContainer from "topbar/TopBarContainer";
 import { LoadAsync } from "@trimble/common";
-import { Route, Switch } from "react-router-dom";
-import { RouteComponentProps } from "react-router";
 import { routeComponents } from "app/routeComponents";
+import React, { FC } from "react";
+import { RouteComponentProps } from "react-router";
+import { Route, Switch } from "react-router-dom";
+import NotFoundRoute from "routes/NotFoundRoute";
+import TopBarContainer from "topbar/TopBarContainer";
 
 interface IProps {
   handleDrawerOpen: () => void;
