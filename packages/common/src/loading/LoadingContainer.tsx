@@ -20,13 +20,13 @@ const LoadingContainer: FC<IProps> = ({
   const [pastDelay, setPastDelay] = useState(false);
   const prevIsLoading = usePrevious(isLoading);
 
-  const setDelay = (delayInput: number) => {
-    return window.setTimeout(() => {
-      setPastDelay(true);
-    }, delayInput);
-  };
-
   useEffect(() => {
+    function setDelay(delayInput: number) {
+      return window.setTimeout(() => {
+        setPastDelay(true);
+      }, delayInput);
+    }
+
     let clearTimeout: number | undefined;
     if (!isLoading && pastDelay) {
       setPastDelay(false);
