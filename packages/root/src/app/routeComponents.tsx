@@ -5,7 +5,7 @@ import {
   portal,
   profile,
   workbenchExisting
-  } from "routes/routes";
+} from "routes/routes";
 import { RouteComponentProps } from "react-router";
 
 interface IProps extends RouteComponentProps {
