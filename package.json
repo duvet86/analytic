@@ -84,9 +84,6 @@
     "*.{ts,tsx,js,md,css,html}": [
       "prettier --trailing-comma es5 --write",
       "git add"
-    ],
-    "yarn.lock": [
-      "git rm --cached"
     ]
   },
   "browserslist": [
