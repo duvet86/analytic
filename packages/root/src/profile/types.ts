@@ -13,26 +13,28 @@ interface ISomInfo {
   Description: string;
 }
 
+interface IApplication {
+  UniqueKey: string;
+  Label: string;
+  NeutralLabel: string;
+  ShortLabel: string;
+  NeutralShortLabel: string;
+  Description: string;
+  Order: number;
+  ShowDescription: boolean;
+  ShowNavigation: boolean;
+  ShowMyItems: boolean;
+  ShowMenuCustomisationBtn: boolean;
+  SectionType: number;
+  ShowHorizontalMenu: boolean;
+  VerticalMenuShowForCurrentTopLevelItem: boolean;
+  VerticalMenuShowAll: boolean;
+  VerticalMenuShowTopLevelOnly: boolean;
+  StartItemPath: string;
+}
+
 export interface IUserInfo {
-  Applications: Array<{
-    UniqueKey: string;
-    Label: string;
-    NeutralLabel: string;
-    ShortLabel: string;
-    NeutralShortLabel: string;
-    Description: string;
-    Order: number;
-    ShowDescription: boolean;
-    ShowNavigation: boolean;
-    ShowMyItems: boolean;
-    ShowMenuCustomisationBtn: boolean;
-    SectionType: number;
-    ShowHorizontalMenu: boolean;
-    VerticalMenuShowForCurrentTopLevelItem: boolean;
-    VerticalMenuShowAll: boolean;
-    VerticalMenuShowTopLevelOnly: boolean;
-    StartItemPath: string;
-  }>;
+  Applications: IApplication[];
   Languages: ILanguageInfo[];
   Soms: ISomInfo[];
   TimeZoneCodes: ITimeZoneCodeInfo[];

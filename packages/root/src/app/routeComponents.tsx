@@ -1,6 +1,12 @@
 import React, { ComponentType } from "react";
 import { RouteComponentProps } from "react-router";
-import { itemsManager, pageBuildeExisting, portal, profile, workbenchExisting } from "routes/routes";
+import {
+  itemsManager,
+  pageBuildeExisting,
+  portal,
+  profile,
+  workbenchExisting,
+} from "routes/routes";
 
 interface IProps extends RouteComponentProps {
   isOpen: boolean;
@@ -25,22 +31,22 @@ const ProfileContainerAsync = React.lazy(() =>
 export const routeComponents = [
   {
     Component: WelcomePageAsync,
-    path: portal
+    path: portal,
   },
   {
     Component: ItemsManagerAsync,
-    path: itemsManager
+    path: itemsManager,
   },
   {
     Component: PagebuilderContainerAsync,
-    path: pageBuildeExisting
+    path: pageBuildeExisting,
   },
   {
     Component: WorkbenchContainerAsync,
-    path: workbenchExisting
+    path: workbenchExisting,
   },
   {
     Component: ProfileContainerAsync,
-    path: profile
-  }
+    path: profile,
+  },
 ];

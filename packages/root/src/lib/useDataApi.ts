@@ -1,4 +1,5 @@
 import history from "lib/history";
+import { getWithJwtAsync } from "lib/http";
 import { clearToken } from "lib/sessionStorageApi";
 import {
   Dispatch,
@@ -6,15 +7,14 @@ import {
   SetStateAction,
   useEffect,
   useReducer,
-  useState
-  } from "react";
-import { getWithJwtAsync } from "lib/http";
+  useState,
+} from "react";
 import { login } from "routes/routes";
 
 const enum DataFetchActionTypes {
   FETCH_INIT = "FETCH_INIT",
   FETCH_SUCCESS = "FETCH_SUCCESS",
-  FETCH_FAILURE = "FETCH_FAILURE"
+  FETCH_FAILURE = "FETCH_FAILURE",
 }
 
 interface IState<T> {
@@ -47,20 +47,20 @@ const dataFetchReducer = <T>(
     case DataFetchActionTypes.FETCH_INIT:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case DataFetchActionTypes.FETCH_SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: undefined,
-        data: action.payload
+        data: action.payload,
       };
     case DataFetchActionTypes.FETCH_FAILURE:
       return {
         ...state,
         isLoading: false,
-        error: action.error
+        error: action.error,
       };
     default:
       throw new Error();
@@ -85,7 +85,7 @@ export const useDataApi = <T>(
     {
       isLoading: true,
       error: undefined,
-      data: initialData
+      data: initialData,
     }
   );
 
@@ -101,7 +101,7 @@ export const useDataApi = <T>(
         if (!didCancel) {
           dispatch({
             type: DataFetchActionTypes.FETCH_SUCCESS,
-            payload: result
+            payload: result,
           });
         }
       } catch (error) {
@@ -140,7 +140,7 @@ export const usePromise = <T>(promise: Promise<T>, initialData: T) => {
     {
       isLoading: true,
       error: undefined,
-      data: initialData
+      data: initialData,
     }
   );
 
@@ -156,7 +156,7 @@ export const usePromise = <T>(promise: Promise<T>, initialData: T) => {
         if (!didCancel) {
           dispatch({
             type: DataFetchActionTypes.FETCH_SUCCESS,
-            payload: result
+            payload: result,
           });
         }
       } catch (error) {

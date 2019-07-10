@@ -1,7 +1,7 @@
-import React, { ChangeEvent, SFC } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { ChangeEvent, SFC } from "react";
 import { tabs } from "sidebar/tabs";
 
 interface IProps {

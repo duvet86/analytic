@@ -1,11 +1,12 @@
 import BackgroundLoading from "@trimble-common/loading/BackgroundLoading";
 import Loading from "@trimble-common/loading/Loading";
-import React, { FC, useEffect, useState } from "react";
 import { usePrevious } from "lib/utilsHooks";
+import React, { FC, useEffect, useState } from "react";
 
 interface IProps {
   isLoading: boolean;
   delay?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
   background?: boolean;
 }

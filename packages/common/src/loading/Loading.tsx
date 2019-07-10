@@ -1,12 +1,14 @@
-import BaseLoading from "@trimble-common/loading/BaseLoading";
-import React, { SFC } from "react";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import BaseLoading from "@trimble-common/loading/BaseLoading";
+import React, { FC } from "react";
 
 interface IProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: any;
   isLoading: boolean;
   pastDelay: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any;
 }
 
@@ -20,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Loading: SFC<IProps> = ({ error, isLoading, pastDelay, children }) => {
+const Loading: FC<IProps> = ({ error, isLoading, pastDelay, children }) => {
   const classes = useStyles();
 
   if (error != null) {

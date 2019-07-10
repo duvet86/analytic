@@ -1,25 +1,13 @@
-import React, { ChangeEvent, FC, useState } from "react";
-import SidebarBody from "sidebar/SidebarBody";
 import { IFolderChild, ItemTypeIds } from "@trimble/common";
 import { useDataApi } from "lib/useDataApi";
+import React, { ChangeEvent, FC, useState } from "react";
+import SidebarBody from "sidebar/SidebarBody";
 
-const starred = `api/useritems/starred?tenant=${
-  process.env.TENANT_ID
-}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
-  ItemTypeIds.USER_DATAVIEW
-}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
+const starred = `api/useritems/starred?tenant=${process.env.TENANT_ID}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${ItemTypeIds.USER_DATAVIEW}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
 
-const myItems = `api/useritems/myitems?tenant=${
-  process.env.TENANT_ID
-}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
-  ItemTypeIds.USER_DATAVIEW
-}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
+const myItems = `api/useritems/myitems?tenant=${process.env.TENANT_ID}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${ItemTypeIds.USER_DATAVIEW}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
 
-const sharedWithMe = `api/useritems/sharedwithme?tenant=${
-  process.env.TENANT_ID
-}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${
-  ItemTypeIds.USER_DATAVIEW
-}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
+const sharedWithMe = `api/useritems/sharedwithme?tenant=${process.env.TENANT_ID}&itemTypeIds=${ItemTypeIds.SYSTEM_DATAVIEW}&itemTypeIds=${ItemTypeIds.USER_DATAVIEW}&itemTypeIds=${ItemTypeIds.PAGE_BUILDER}`;
 
 type State = 0 | 1 | 2;
 

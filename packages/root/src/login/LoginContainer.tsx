@@ -1,3 +1,6 @@
+import { LoadingContainer } from "@trimble/common";
+import { getTokenAsync } from "lib/authApi";
+import { storeToken } from "lib/sessionStorageApi";
 import Login from "login/Login";
 import React, {
   ChangeEvent,
@@ -5,12 +8,9 @@ import React, {
   FormEvent,
   MouseEvent,
   useEffect,
-  useState
-  } from "react";
-import { getTokenAsync } from "lib/authApi";
-import { LoadingContainer } from "@trimble/common";
+  useState,
+} from "react";
 import { RouteComponentProps } from "react-router";
-import { storeToken } from "lib/sessionStorageApi";
 
 const handleMouseDownPassword = (e: MouseEvent) => {
   e.preventDefault();
@@ -46,7 +46,7 @@ const LoginContainer: FC<RouteComponentProps> = ({ history }) => {
     if (sendRequest) {
       submitForm();
     }
-  }, [sendRequest]);
+  }, [sendRequest, history, password, username]);
 
   const handleChange = (prop: "username" | "password") => (
     event: ChangeEvent<HTMLInputElement>

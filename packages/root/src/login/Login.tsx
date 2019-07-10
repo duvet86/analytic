@@ -6,17 +6,12 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
-import React, {
-  ChangeEvent,
-  FC,
-  FormEvent,
-  MouseEvent
-  } from "react";
-import trimbleLogo from "topbar/trimbleLogo.png";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import React, { ChangeEvent, FC, FormEvent, MouseEvent } from "react";
+import trimbleLogo from "topbar/trimbleLogo.png";
 
 interface IProps {
   isInvalidCredentials: boolean;
@@ -34,28 +29,28 @@ interface IProps {
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   container: {
     backgroundColor: "#eee",
-    height: "100%"
+    height: "100%",
   },
   loginContainer: {
-    height: "70%"
+    height: "70%",
   },
   title: {
-    color: "#005f9e"
+    color: "#005f9e",
   },
   paper: {
-    padding: spacing(3)
+    padding: spacing(3),
   },
   passwordControl: {
     marginRight: spacing(),
-    marginBottom: spacing(3)
+    marginBottom: spacing(3),
   },
   logoContainer: {
-    textAlign: "center"
+    textAlign: "center",
   },
   errorMessage: {
     marginTop: 10,
-    color: "red"
-  }
+    color: "red",
+  },
 }));
 
 const Login: FC<IProps> = ({
@@ -64,7 +59,7 @@ const Login: FC<IProps> = ({
   showPassword,
   handleChange,
   handleMouseDownPassword,
-  handleClickShowPasssword
+  handleClickShowPasssword,
 }) => {
   const classes = useStyles();
 

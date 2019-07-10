@@ -3,24 +3,31 @@ interface IToken {
   token: string;
 }
 
+const getTokenKey = () => {
+  const tokenKey = process.env.TOKEN_KEY;
+  if (tokenKey == null) {
+    throw new Error("process.env.TOKEN_KEY cannot be null.");
+  }
+  return tokenKey;
+};
+
 export const storeToken = (token: string) => {
   sessionStorage.setItem(
-    process.env.TOKEN_KEY!,
+    getTokenKey(),
     JSON.stringify({
       createdAt: Math.floor(Date.now() / 1000),
-      token
+      token,
     })
   );
 };
 
-export const clearToken = () =>
-  sessionStorage.removeItem(process.env.TOKEN_KEY!);
+export const clearToken = () => sessionStorage.removeItem(getTokenKey());
 
 export const getToken = (): IToken | null => {
-  const tokenKey = sessionStorage.getItem(process.env.TOKEN_KEY!);
-  if (!tokenKey) {
+  const storageTokenKey = sessionStorage.getItem(getTokenKey());
+  if (!storageTokenKey) {
     return null;
   }
 
-  return JSON.parse(tokenKey);
+  return JSON.parse(storageTokenKey);
 };

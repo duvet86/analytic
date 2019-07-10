@@ -1,4 +1,6 @@
-import React from "react";
 import App from "@trimble-items/App";
+import React from "react";
 
-export default () => <App />;
+export default function MyApp() {
+  return <App />;
+}

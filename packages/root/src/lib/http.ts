@@ -12,16 +12,20 @@ const getJwtToken = (): string => {
 };
 
 const getJwtHeaders = (token: string): HeadersInit => ({
-  Authorization: `Bearer ${token}`
+  Authorization: `Bearer ${token}`,
 });
 
 const getHeader = (): HeadersInit => {
   const token = getJwtToken();
+  const tenantId = process.env.TENANT_ID;
+  if (tenantId == null) {
+    throw new Error("process.env.TENANT_ID cannot be null.");
+  }
 
   return {
     ...getJwtHeaders(token),
     "Content-Type": "application/json",
-    section: process.env.TENANT_ID!
+    section: tenantId,
   };
 };
 
@@ -40,7 +44,7 @@ const handleErrors = async (response: Response) => {
     throw {
       error: e.toString(),
       status: "javascript error",
-      tip: "Have you changed the BASE_URL in the constants file?"
+      tip: "Have you changed the BASE_URL in the constants file?",
     };
   }
 };
@@ -51,7 +55,7 @@ export const getAsync = async <T>(
 ): Promise<T> => {
   const response = await fetch(`${process.env.BASE_URL}/${url}`, {
     headers,
-    method: "GET"
+    method: "GET",
   });
 
   return handleErrors(response);
@@ -65,7 +69,7 @@ export const postAsync = async <T>(
   const response = await fetch(`${process.env.BASE_URL}/${url}`, {
     body: JSON.stringify(data),
     headers,
-    method: "POST"
+    method: "POST",
   });
 
   return handleErrors(response);
@@ -77,7 +81,7 @@ export const deleteAsync = async <T>(
 ): Promise<T> => {
   const response = await fetch(`${process.env.BASE_URL}/${url}`, {
     headers,
-    method: "DELETE"
+    method: "DELETE",
   });
 
   return handleErrors(response);
