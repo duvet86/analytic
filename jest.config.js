@@ -2,18 +2,42 @@ module.exports = {
   resolver: require.resolve("jest-pnp-resolver"),
   roots: ["<rootDir>/packages"],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.css$": "<rootDir>/__mocks__/cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":
+      "<rootDir>/__mocks__//fileTransform.js"
   },
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+  transformIgnorePatterns: [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  testMatch: [
+    "<rootDir>/packages/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
   testURL: "http://localhost",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  moduleFileExtensions: [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
   modulePaths: ["<rootDir>/packages/root/src", "<rootDir>/packages/common/src"],
   moduleNameMapper: {
-    "^.+\\.css$": "identity-obj-proxy",
-    "^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-      "<rootDir>/__mocks__/fileMock.ts",
-    "typeface-roboto": "<rootDir>/__mocks__/fileMock.ts",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
     "@trimble-common/(.*)": "<rootDir>/packages/common/src/$1"
   },
-  collectCoverageFrom: ["packages/**/*.{ts,tsx}", "!packages/**/*.d.ts"]
+  collectCoverageFrom: ["packages/**/*.{ts,tsx}", "!packages/**/*.d.ts"],
+  setupFiles: ["react-app-polyfill/jsdom"],
+  testEnvironment: "jest-environment-jsdom-fourteen",
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ]
 };

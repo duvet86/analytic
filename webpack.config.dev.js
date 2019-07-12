@@ -7,7 +7,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
-const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
+// const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 const postcssNormalize = require("postcss-normalize");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -50,7 +50,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
           // which in turn let's users customize the target behavior as per their needs.
           postcssNormalize()
         ],
-        sourceMap: true
+        sourceMap: false
       }
     }
   ].filter(Boolean);
@@ -59,7 +59,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     loaders.push({
       loader: require.resolve(preProcessor),
       options: {
-        sourceMap: true
+        sourceMap: false
       }
     });
   }
@@ -76,8 +76,10 @@ module.exports = {
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     filename: "static/js/bundle.js",
+    // TODO: remove this when upgrading to webpack 5
+    futureEmitAssets: true,
     chunkFilename: "static/js/[name].chunk.js",
-    path: path.resolve(__dirname, "public"),
+    // path: path.resolve(__dirname, "public"),
     publicPath
   },
   optimization: {
@@ -160,7 +162,7 @@ module.exports = {
             exclude: cssModuleRegex,
             use: getStyleLoaders({
               importLoaders: 1,
-              sourceMap: true
+              sourceMap: false
             }),
             // Don't consider CSS imports dead code even if the
             // containing package claims to have no side effects.
@@ -177,7 +179,7 @@ module.exports = {
             use: getStyleLoaders(
               {
                 importLoaders: 2,
-                sourceMap: true
+                sourceMap: false
               },
               "sass-loader"
             ),
@@ -222,10 +224,18 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      tslint: true,
+      eslint: true,
       checkSyntacticErrors: true,
       async: true,
-      watch: "./packages/root/src/" // optional but improves performance (fewer stat calls)
+      watch: "./packages/root/src/", // optional but improves performance (fewer stat calls),
+      reportFiles: [
+        "packages/**",
+        "!packages/**/node_modules/**",
+        "!**/__tests__/**",
+        "!**/?(*.)(spec|test).*",
+        "!**/src/setupProxy.*",
+        "!**/src/setupTests.*"
+      ]
     }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without

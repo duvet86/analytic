@@ -251,7 +251,7 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      tslint: true,
+      eslint: true,
       checkSyntacticErrors: true,
       watch: "./packages/root/src" // optional but improves performance (fewer stat calls)
     }),
