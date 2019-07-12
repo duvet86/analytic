@@ -1,9 +1,8 @@
-// tslint:disable:no-console
 const enum LogLevels {
   TRACE = "TRACE",
   INFO = "INFO",
   WARN = "WARN",
-  ERROR = "ERROR"
+  ERROR = "ERROR",
 }
 
 class Log {
@@ -13,12 +12,16 @@ class Log {
 
     switch (level) {
       case LogLevels.TRACE:
+        // eslint-disable-next-line no-console
         return console.trace(area, error);
       case LogLevels.INFO:
+        // eslint-disable-next-line no-console
         return console.info(area, error);
       case LogLevels.WARN:
+        // eslint-disable-next-line no-console
         return console.warn(area, error);
       case LogLevels.ERROR:
+        // eslint-disable-next-line no-console
         return console.error(area, error);
     }
   }
