@@ -14,13 +14,13 @@ const useStyles = makeStyles({
     height: "100%",
     width: "100%",
     position: "fixed",
-    zIndex: 100,
+    zIndex: 100
   },
   loading: {
     left: "48%",
     position: "absolute",
-    top: "30%",
-  },
+    top: "30%"
+  }
 });
 
 const BackgroundLoading: SFC<IProps> = ({ isLoading, pastDelay, children }) => {

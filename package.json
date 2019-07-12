@@ -6,7 +6,8 @@
     "build": "webpack --config webpack.config.prod.js && node copyPublicFolder",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "test": "jest --colors",
-    "lint": "eslint packages/**"
+    "lint": "eslint packages/**",
+    "pretty": "prettier --write packages/**"
   },
   "dependencies": {
     "@material-ui/core": "^4.2.0",

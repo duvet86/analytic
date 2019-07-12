@@ -16,7 +16,7 @@ const LoadingContainer: FC<IProps> = ({
   error,
   isLoading,
   background,
-  children,
+  children
 }) => {
   const [pastDelay, setPastDelay] = useState(false);
   const prevIsLoading = usePrevious(isLoading);

@@ -2,7 +2,7 @@ const enum LogLevels {
   TRACE = "TRACE",
   INFO = "INFO",
   WARN = "WARN",
-  ERROR = "ERROR",
+  ERROR = "ERROR"
 }
 
 class Log {

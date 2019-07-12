@@ -8,7 +8,7 @@ import React, {
   FormEvent,
   MouseEvent,
   useEffect,
-  useState,
+  useState
 } from "react";
 import { RouteComponentProps } from "react-router";
 

@@ -7,7 +7,7 @@ export const getTokenAsync = (
   password: string
 ): Promise<string> =>
   getAsync("api/token", {
-    Authorization: `Basic ${encode(userName + ":" + password)}`,
+    Authorization: `Basic ${encode(userName + ":" + password)}`
   });
 
 export const getTokenFromSession = () => {

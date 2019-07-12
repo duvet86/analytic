@@ -16,7 +16,7 @@ export const storeToken = (token: string) => {
     getTokenKey(),
     JSON.stringify({
       createdAt: Math.floor(Date.now() / 1000),
-      token,
+      token
     })
   );
 };

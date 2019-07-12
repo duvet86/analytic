@@ -18,8 +18,8 @@ const useStyles = makeStyles({
     display: "flex",
     height: "100%",
     justifyContent: "center",
-    width: "100%",
-  },
+    width: "100%"
+  }
 });
 
 const Loading: FC<IProps> = ({ error, isLoading, pastDelay, children }) => {

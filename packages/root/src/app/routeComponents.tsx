@@ -5,7 +5,7 @@ import {
   pageBuildeExisting,
   portal,
   profile,
-  workbenchExisting,
+  workbenchExisting
 } from "routes/routes";
 
 interface IProps extends RouteComponentProps {
@@ -31,22 +31,22 @@ const ProfileContainerAsync = React.lazy(() =>
 export const routeComponents = [
   {
     Component: WelcomePageAsync,
-    path: portal,
+    path: portal
   },
   {
     Component: ItemsManagerAsync,
-    path: itemsManager,
+    path: itemsManager
   },
   {
     Component: PagebuilderContainerAsync,
-    path: pageBuildeExisting,
+    path: pageBuildeExisting
   },
   {
     Component: WorkbenchContainerAsync,
-    path: workbenchExisting,
+    path: workbenchExisting
   },
   {
     Component: ProfileContainerAsync,
-    path: profile,
-  },
+    path: profile
+  }
 ];

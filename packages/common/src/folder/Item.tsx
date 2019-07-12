@@ -15,13 +15,13 @@ interface IProps {
 
 const useStyles = makeStyles(({ typography }: Theme) => ({
   icon: {
-    color: "#696969",
+    color: "#696969"
   },
   heading: {
     paddingLeft: 5,
     fontSize: typography.pxToRem(15),
-    fontWeight: typography.fontWeightRegular,
-  },
+    fontWeight: typography.fontWeightRegular
+  }
 }));
 
 const createItemLink = (link: string) =>
@@ -60,7 +60,7 @@ const Item: SFC<IProps> = ({ itemTypeId, itemId, label, nested }) => {
       <ListItemText
         primary={label}
         classes={{
-          primary: classes.heading,
+          primary: classes.heading
         }}
       />
     </ListItem>

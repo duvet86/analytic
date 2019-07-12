@@ -18,45 +18,45 @@ const useStyles = makeStyles({
   grid: {
     padding: 25,
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.08)",
+    backgroundColor: "rgba(0, 0, 0, 0.08)"
   },
   card: {
     display: "flex",
     height: "100%",
     flexDirection: "column",
-    paddingBottom: 12,
+    paddingBottom: 12
   },
   cardTitle: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   cardBody: {
     display: "flex",
-    height: "100%",
+    height: "100%"
   },
   titleBody: {
     flex: 1,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   cardActions: {
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   },
   warningIcon: {
     fill: "#B71C1C",
     height: 40,
-    width: 40,
+    width: 40
   },
   buttonIcon: {
-    marginRight: 10,
+    marginRight: 10
   },
   details: {
     whiteSpace: "pre-wrap",
     display: "flex",
     height: "100%",
     width: "100%",
-    overflow: "auto",
+    overflow: "auto"
   },
   summary: {
     cursor: "pointer",
@@ -64,11 +64,11 @@ const useStyles = makeStyles({
     alignItems: "center",
     border: "1px solid #ccc",
     padding: 10,
-    outline: "none",
+    outline: "none"
   },
   detailsBody: {
-    padding: 15,
-  },
+    padding: 15
+  }
 });
 
 const homePageLink = (props: ButtonProps) => (
