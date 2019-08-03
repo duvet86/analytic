@@ -1,6 +1,6 @@
 {
-  "name": "trimble-items",
-  "version": "1.0.0",
+  "name": "root",
+  "version": "0.0.1",
   "main": "index.js",
   "author": "luca",
   "license": "MIT",
@@ -8,10 +8,10 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@trimble/items-manager": "^0.0.1",
     "@trimble/common": "^0.0.1",
+    "@trimble/items-manager": "^0.0.1",
     "base-64": "^0.1.0",
     "react-router-dom": "^5.0.1",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.75"
   }
 }

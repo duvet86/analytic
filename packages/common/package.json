@@ -1,7 +1,7 @@
 {
   "name": "@trimble/common",
   "version": "0.0.1",
-  "main": "src/index.tsx",
+  "main": "index.tsx",
   "author": "luca",
   "license": "MIT",
   "scripts": {
