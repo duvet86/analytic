@@ -6,9 +6,9 @@ import { LoadingContainer } from "@mis/common";
 
 interface IProps {
   isLoading: boolean;
-  selectedTab: 0 | 1 | 2;
+  selectedTab: 0 | 1;
   folderList: IFolderChild[];
-  handleChange: (_: ChangeEvent<{}>, value: 0 | 1 | 2) => void;
+  handleChange: (_: ChangeEvent<{}>, value: 0 | 1) => void;
 }
 
 const SidebarBody: FC<IProps> = ({

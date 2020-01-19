@@ -6,7 +6,7 @@ import { tabs } from "sidebar/tabs";
 
 interface IProps {
   selectedTab: number;
-  handleChange: (event: ChangeEvent<{}>, value: 0 | 1 | 2) => void;
+  handleChange: (event: ChangeEvent<{}>, value: 0 | 1) => void;
 }
 
 const useStyles = makeStyles({

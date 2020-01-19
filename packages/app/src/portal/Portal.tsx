@@ -8,7 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { SidebarContainer } from "@mis/common";
 
 interface IProps {
-  isOpen: boolean;
   visibleLinks: IPortalLink[];
   searchText: string;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -24,18 +23,13 @@ const useStyles = makeStyles({
   }
 });
 
-const Portal: FC<IProps> = ({
-  isOpen,
-  visibleLinks,
-  searchText,
-  handleChange
-}) => {
+const Portal: FC<IProps> = ({ visibleLinks, searchText, handleChange }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.bodyContainer}>
       <SidebarContainer
-        open={isOpen}
+        open={true}
         SidebarBodyComponent={SidebarBodyContainer}
       />
       <div>

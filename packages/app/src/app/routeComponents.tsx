@@ -8,14 +8,10 @@ import {
   workbenchExisting
 } from "routes/routes";
 
-interface IProps extends RouteComponentProps {
-  isOpen: boolean;
-}
-
-const WelcomePageAsync = React.lazy<ComponentType<IProps>>(() =>
+const WelcomePageAsync = React.lazy<ComponentType<RouteComponentProps>>(() =>
   import("portal/PortalContainer")
 );
-const ItemsManagerAsync = React.lazy<ComponentType<IProps>>(() =>
+const ItemsManagerAsync = React.lazy<ComponentType<RouteComponentProps>>(() =>
   import("@mis/useritems")
 );
 const WorkbenchContainerAsync = React.lazy(() =>

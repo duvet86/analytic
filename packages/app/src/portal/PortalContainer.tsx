@@ -3,11 +3,7 @@ import Portal from "portal/Portal";
 import React, { ChangeEvent, FC, useState } from "react";
 import { RouteComponentProps } from "react-router";
 
-interface IProps extends RouteComponentProps {
-  isOpen: boolean;
-}
-
-const PortalContainer: FC<IProps> = ({ isOpen }) => {
+const PortalContainer: FC<RouteComponentProps> = () => {
   const [searchText, setSearchText] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +16,6 @@ const PortalContainer: FC<IProps> = ({ isOpen }) => {
 
   return (
     <Portal
-      isOpen={isOpen}
       searchText={searchText}
       handleChange={handleChange}
       visibleLinks={visibleLinks}
