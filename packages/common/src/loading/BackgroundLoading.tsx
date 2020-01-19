@@ -1,7 +1,7 @@
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import BaseLoading from "@mis-common/loading/BaseLoading";
-import React, { SFC } from "react";
+import React, { FC } from "react";
 
 interface IProps {
   isLoading: boolean;
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const BackgroundLoading: SFC<IProps> = ({ isLoading, pastDelay, children }) => {
+const BackgroundLoading: FC<IProps> = ({ isLoading, pastDelay, children }) => {
   const classes = useStyles();
 
   return (

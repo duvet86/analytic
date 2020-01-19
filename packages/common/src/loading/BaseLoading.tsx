@@ -1,5 +1,5 @@
 import LinearProgress from "@material-ui/core/LinearProgress";
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   }
 });
 
-const BaseLoading: SFC = () => {
+const BaseLoading: FC = () => {
   const classes = useStyles();
 
   return (

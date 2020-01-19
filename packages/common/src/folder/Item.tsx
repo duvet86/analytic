@@ -3,7 +3,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { ItemTypeIds } from "@mis-common/folder/types";
 import { DashboardIcon, DataViewIcon } from "app/icons";
-import React, { forwardRef, Ref, SFC } from "react";
+import React, { forwardRef, Ref, FC } from "react";
 import { NavLink, NavLinkProps } from "react-router-dom";
 
 interface IProps {
@@ -40,7 +40,7 @@ const workbenchLink = (itemTypeId: ItemTypeIds, itemId: string) => {
   return forwardRef<HTMLAnchorElement, ListItemProps>(createItemLink(link));
 };
 
-const Item: SFC<IProps> = ({ itemTypeId, itemId, label, nested }) => {
+const Item: FC<IProps> = ({ itemTypeId, itemId, label, nested }) => {
   const theme = useTheme();
   const classes = useStyles();
 

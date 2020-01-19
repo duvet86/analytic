@@ -1,5 +1,5 @@
 import FolderTree from "sidebar/folder/FolderTree";
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import { IFolderChild } from "@mis/common";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   }
 });
 
-const SidebarFolderTree: SFC<IProps> = ({ folderList }) => {
+const SidebarFolderTree: FC<IProps> = ({ folderList }) => {
   const classes = useStyles();
 
   return (

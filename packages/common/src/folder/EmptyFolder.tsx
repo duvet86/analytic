@@ -1,6 +1,6 @@
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import React, { SFC } from "react";
+import React, { FC } from "react";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 
 interface IProps {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(({ typography }: Theme) => ({
   }
 }));
 
-const EmptyFolder: SFC<IProps> = ({ nested }) => {
+const EmptyFolder: FC<IProps> = ({ nested }) => {
   const theme = useTheme();
   const classes = useStyles();
 

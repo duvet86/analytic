@@ -1,7 +1,7 @@
 import BaseLoading from "@mis-common/loading/BaseLoading";
-import React, { SFC, Suspense } from "react";
+import React, { FC, Suspense } from "react";
 
-const LoadAsync: SFC = ({ children }) => {
+const LoadAsync: FC = ({ children }) => {
   return <Suspense fallback={<BaseLoading />}>{children}</Suspense>;
 };
 

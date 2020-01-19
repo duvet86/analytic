@@ -1,3 +1,5 @@
+import React, { FC } from "react";
+
 import Collapse from "@material-ui/core/Collapse";
 import EmptyFolder from "@mis-common/folder/EmptyFolder";
 import ExpandLess from "@material-ui/icons/ExpandMore";
@@ -10,10 +12,10 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import React, { SFC } from "react";
-import { IFolderChild } from "@mis-common/folder/types";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
+
+import { IFolderChild } from "@mis-common/folder/types";
 
 interface IProps {
   label: string;
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const Folder: SFC<IProps> = ({
+const Folder: FC<IProps> = ({
   label,
   childFolders,
   handleClick,

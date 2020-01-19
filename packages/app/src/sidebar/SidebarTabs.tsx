@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import React, { ChangeEvent, SFC } from "react";
+import React, { ChangeEvent, FC } from "react";
 import { tabs } from "sidebar/tabs";
 
 interface IProps {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-const SidebarTabs: SFC<IProps> = ({ selectedTab, handleChange }) => {
+const SidebarTabs: FC<IProps> = ({ selectedTab, handleChange }) => {
   const classes = useStyles();
 
   return (
