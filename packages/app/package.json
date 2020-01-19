@@ -1,15 +1,15 @@
 {
-  "name": "root",
+  "name": "@mis/app",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "index.ts",
   "author": "luca",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "@trimble/common": "^0.0.1",
-    "@trimble/items-manager": "^0.0.1",
+    "@mis/common": "^0.0.1",
+    "@mis/useritems": "^0.0.1",
     "base-64": "^0.1.0",
     "react-router-dom": "^5.0.1",
     "typeface-roboto": "^0.0.75"

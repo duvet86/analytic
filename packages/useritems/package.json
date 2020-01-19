@@ -1,5 +1,5 @@
 {
-  "name": "@trimble/items-manager",
+  "name": "@mis/useritems",
   "version": "0.0.1",
   "main": "index.tsx",
   "author": "luca",

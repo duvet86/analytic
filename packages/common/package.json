@@ -1,10 +1,7 @@
 {
-  "name": "@trimble/common",
+  "name": "@mis/common",
   "version": "0.0.1",
-  "main": "index.tsx",
+  "main": "index.ts",
   "author": "luca",
-  "license": "MIT",
-  "scripts": {
-    "build": "tsc"
-  }
+  "license": "MIT"
 }
