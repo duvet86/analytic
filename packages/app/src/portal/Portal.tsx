@@ -5,7 +5,7 @@ import SidebarBodyContainer from "sidebar/SidebarBodyContainer";
 import TextField from "@material-ui/core/TextField";
 import { IPortalLink } from "portal/linksList";
 import { makeStyles } from "@material-ui/core/styles";
-import { SidebarContainer } from "@trimble/common";
+import { SidebarContainer } from "@mis/common";
 
 interface IProps {
   isOpen: boolean;

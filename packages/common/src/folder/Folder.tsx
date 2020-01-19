@@ -1,17 +1,17 @@
 import Collapse from "@material-ui/core/Collapse";
-import EmptyFolder from "@trimble-common/folder/EmptyFolder";
+import EmptyFolder from "@mis-common/folder/EmptyFolder";
 import ExpandLess from "@material-ui/icons/ExpandMore";
 import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
-import FolderContainer from "@trimble-common/folder/FolderContainer";
+import FolderContainer from "@mis-common/folder/FolderContainer";
 import FolderIcon from "@material-ui/icons/Folder";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import Item from "@trimble-common/folder/Item";
+import Item from "@mis-common/folder/Item";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import React, { SFC } from "react";
-import { IFolderChild } from "@trimble-common/folder/types";
+import { IFolderChild } from "@mis-common/folder/types";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
 

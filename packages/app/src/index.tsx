@@ -3,7 +3,7 @@ import "typeface-roboto";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { LoadAsync } from "@trimble/common";
+import { LoadAsync } from "@mis/common";
 import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
 import configureTheme from "lib/configureTheme";
 import history from "lib/history";

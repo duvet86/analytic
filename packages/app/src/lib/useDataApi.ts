@@ -20,7 +20,7 @@ const enum DataFetchActionTypes {
 interface IState<T> {
   isLoading: boolean;
   data: T;
-  error: any;
+  error: unknown;
 }
 
 interface IFetchRequest {
@@ -34,7 +34,7 @@ interface IFetchSuccess<T> {
 
 interface IFetchError {
   type: DataFetchActionTypes.FETCH_FAILURE;
-  error: any;
+  error: unknown;
 }
 
 type FetchActions<T> = IFetchRequest | IFetchSuccess<T> | IFetchError;

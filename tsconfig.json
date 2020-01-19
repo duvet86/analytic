@@ -4,7 +4,7 @@
     "target": "es6" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */,
     "module": "esnext" /* Specify module code generation: 'none', commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     "lib": [
-      "es2017",
+      "esnext",
       "dom"
     ] /* Specify library files to be included in the compilation:  */,
     "allowJs": false /* Allow javascript files to be compiled. */,
@@ -65,9 +65,10 @@
     "skipLibCheck": true,
     "paths": {
       "*": ["app/src/*"],
-      "@trimble-items/*": ["trimble-items/src/*"],
-      "@trimble-common/*": ["common/src/*"]
+      "@mis-useritems/*": ["useritems/src/*"],
+      "@mis-common/*": ["common/src/*"]
     }
   },
+  "include": ["packages/**/src"],
   "exclude": ["node_modules", "packages/**/node_modules"]
 }

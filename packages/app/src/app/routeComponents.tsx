@@ -16,7 +16,7 @@ const WelcomePageAsync = React.lazy<ComponentType<IProps>>(() =>
   import("portal/PortalContainer")
 );
 const ItemsManagerAsync = React.lazy<ComponentType<IProps>>(() =>
-  import("@trimble/items-manager")
+  import("@mis/useritems")
 );
 const WorkbenchContainerAsync = React.lazy(() =>
   import("portal/PortalContainer")

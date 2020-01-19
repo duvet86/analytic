@@ -1,10 +1,10 @@
 import ErrorBoundary from "errorBoundary/ErrorBoundary";
 import Log from "lib/Log";
-import React, { Component, ErrorInfo } from "react";
+import React, { Component } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface IState {
-  error: any;
+  error: unknown;
 }
 
 class ErrorBoundaryContainer extends Component<RouteComponentProps, IState> {
@@ -17,7 +17,7 @@ class ErrorBoundaryContainer extends Component<RouteComponentProps, IState> {
     error: undefined
   };
 
-  public componentDidCatch(error: Error, _: ErrorInfo) {
+  public componentDidCatch(error: Error) {
     Log.error("Caught by ErrorBoundary", error);
   }
 

@@ -1,5 +1,5 @@
-import BackgroundLoading from "@trimble-common/loading/BackgroundLoading";
-import Loading from "@trimble-common/loading/Loading";
+import BackgroundLoading from "@mis-common/loading/BackgroundLoading";
+import Loading from "@mis-common/loading/Loading";
 import { usePrevious } from "lib/utilsHooks";
 import React, { FC, useEffect, useState } from "react";
 

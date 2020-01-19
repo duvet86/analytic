@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC } from "react";
 import SidebarFolderTree from "sidebar/SidebarFolderTree";
 import SidebarTabs from "sidebar/SidebarTabs";
-import { IFolderChild } from "@trimble/common";
-import { LoadingContainer } from "@trimble/common";
+import { IFolderChild } from "@mis/common";
+import { LoadingContainer } from "@mis/common";
 
 interface IProps {
   isLoading: boolean;

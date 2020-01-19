@@ -1,6 +1,6 @@
 import List from "@material-ui/core/List";
 import React, { FC } from "react";
-import { FolderContainer, IFolderChild, Item } from "@trimble/common";
+import { FolderContainer, IFolderChild, Item } from "@mis/common";
 import { makeStyles } from "@material-ui/core/styles";
 
 interface IProps {

@@ -28,10 +28,10 @@ module.exports = {
     "jsx",
     "node"
   ],
-  modulePaths: ["<rootDir>/packages/root/src", "<rootDir>/packages/common/src"],
+  modulePaths: ["<rootDir>/packages/app/src", "<rootDir>/packages/common/src"],
   moduleNameMapper: {
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
-    "@trimble-common/(.*)": "<rootDir>/packages/common/src/$1"
+    "@mis-common/(.*)": "<rootDir>/packages/common/src/$1"
   },
   collectCoverageFrom: ["packages/**/*.{ts,tsx}", "!packages/**/*.d.ts"],
   setupFiles: ["react-app-polyfill/jsdom"],

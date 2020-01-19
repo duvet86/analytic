@@ -1,4 +1,4 @@
-import { LoadingContainer } from "@trimble/common";
+import { LoadingContainer } from "@mis/common";
 import { getTokenAsync } from "lib/authApi";
 import { storeToken } from "lib/sessionStorageApi";
 import Login from "login/Login";

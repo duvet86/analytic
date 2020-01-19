@@ -1,6 +1,6 @@
 import FolderTree from "sidebar/folder/FolderTree";
 import React, { FC } from "react";
-import { IFolderChild, LoadingContainer } from "@trimble/common";
+import { IFolderChild, LoadingContainer } from "@mis/common";
 import { useDataApi } from "lib/useDataApi";
 
 interface IProps {

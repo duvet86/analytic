@@ -1,4 +1,4 @@
-import { IFolderChild, ItemTypeIds } from "@trimble/common";
+import { IFolderChild, ItemTypeIds } from "@mis/common";
 import { useDataApi } from "lib/useDataApi";
 import React, { ChangeEvent, FC, useState } from "react";
 import SidebarBody from "sidebar/SidebarBody";

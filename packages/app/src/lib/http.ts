@@ -63,7 +63,7 @@ export const getAsync = async <T>(
 
 export const postAsync = async <T>(
   url: string,
-  data: any,
+  data: unknown,
   headers: HeadersInit
 ): Promise<T> => {
   const response = await fetch(`${process.env.BASE_URL}/${url}`, {
@@ -90,7 +90,7 @@ export const deleteAsync = async <T>(
 export const getWithJwtAsync = <T>(url: string) =>
   getAsync<T>(url, getHeader());
 
-export const postWithJwtAsync = <T>(url: string, data?: any) =>
+export const postWithJwtAsync = <T>(url: string, data?: unknown) =>
   postAsync<T>(url, data, getHeader());
 
 export const deleteWithJwtAsync = <T>(url: string) =>

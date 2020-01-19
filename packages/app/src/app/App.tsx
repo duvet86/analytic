@@ -1,4 +1,4 @@
-import { LoadAsync } from "@trimble/common";
+import { LoadAsync } from "@mis/common";
 import { routeComponents } from "app/routeComponents";
 import React, { FC } from "react";
 import { RouteComponentProps } from "react-router";

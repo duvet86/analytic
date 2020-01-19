@@ -1,7 +1,7 @@
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import { ItemTypeIds } from "@trimble-common/folder/types";
+import { ItemTypeIds } from "@mis-common/folder/types";
 import { DashboardIcon, DataViewIcon } from "app/icons";
 import React, { forwardRef, Ref, SFC } from "react";
 import { NavLink, NavLinkProps } from "react-router-dom";

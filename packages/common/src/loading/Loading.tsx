@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import BaseLoading from "@trimble-common/loading/BaseLoading";
+import BaseLoading from "@mis-common/loading/BaseLoading";
 import React, { FC } from "react";
 
 interface IProps {

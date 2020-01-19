@@ -1,6 +1,6 @@
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import BaseLoading from "@trimble-common/loading/BaseLoading";
+import BaseLoading from "@mis-common/loading/BaseLoading";
 import React, { SFC } from "react";
 
 interface IProps {
