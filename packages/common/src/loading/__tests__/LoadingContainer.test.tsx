@@ -1,7 +1,8 @@
-import Loading from "@mis-common/loading/Loading";
-import LoadingContainer from "@mis-common/loading/LoadingContainer";
 import React from "react";
 import { create } from "react-test-renderer";
+
+import Loading from "../Loading";
+import LoadingContainer from "../LoadingContainer";
 
 // Mock setTimeout.
 jest.useFakeTimers();

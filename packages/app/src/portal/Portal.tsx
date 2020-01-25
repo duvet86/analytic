@@ -1,11 +1,14 @@
-import Grid from "@material-ui/core/Grid";
-import PortalAppCard from "portal/PortalAppCard";
 import React, { ChangeEvent, FC } from "react";
-import SidebarBodyContainer from "sidebar/SidebarBodyContainer";
-import TextField from "@material-ui/core/TextField";
-import { IPortalLink } from "portal/linksList";
+
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+
 import { SidebarContainer } from "@mis/common";
+
+import SidebarBodyContainer from "../sidebar/SidebarBodyContainer";
+import { IPortalLink } from "./linksList";
+import PortalAppCard from "./PortalAppCard";
 
 interface IProps {
   visibleLinks: IPortalLink[];

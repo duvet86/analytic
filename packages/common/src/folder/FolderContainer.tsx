@@ -1,7 +1,9 @@
-import Folder from "@mis-common/folder/Folder";
 import React, { FC, useState } from "react";
-import { IFolderChild } from "@mis-common/folder/types";
+
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
+
+import Folder from "./Folder";
+import { IFolderChild } from "./types";
 
 interface IProps {
   label: string;

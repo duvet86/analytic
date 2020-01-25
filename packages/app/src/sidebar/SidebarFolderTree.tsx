@@ -1,7 +1,9 @@
-import FolderTree from "sidebar/folder/FolderTree";
 import React, { FC } from "react";
-import { IFolderChild } from "@mis/common";
+
 import { makeStyles } from "@material-ui/core/styles";
+import { IFolderChild } from "@mis/common";
+
+import FolderTree from "./folder/FolderTree";
 
 interface IProps {
   folderList: IFolderChild[];

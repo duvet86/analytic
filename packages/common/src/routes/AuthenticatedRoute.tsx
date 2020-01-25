@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { getTokenFromSession } from "lib/authApi";
-import { IRouteProps } from "routes/types";
-import { login } from "routes/routes";
 import { Redirect, Route } from "react-router";
 import { RouteComponentProps } from "react-router";
+
+import { getTokenFromSession } from "../lib/authApi";
+import { IRouteProps } from "../routes/types";
+import { loginRoutePath } from "../routes/routes";
 
 const AuthenticatedRoute: FC<IRouteProps> = ({ component, ...props }) => {
   const boundRender = (routeProps: RouteComponentProps) =>
@@ -12,7 +13,7 @@ const AuthenticatedRoute: FC<IRouteProps> = ({ component, ...props }) => {
     ) : (
       <Redirect
         to={{
-          pathname: login,
+          pathname: loginRoutePath,
           state: { from: routeProps.location }
         }}
       />

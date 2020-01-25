@@ -1,8 +1,9 @@
-import Profile from "profile/Profile";
 import React, { FC } from "react";
-import { IUserInfo } from "profile/types";
-import { LoadingContainer } from "@mis/common";
-import { useDataApi } from "lib/useDataApi";
+
+import { useDataApi, LoadingContainer } from "@mis/common";
+
+import { IUserInfo } from "./types";
+import Profile from "./Profile";
 
 const ProfileContainer: FC = () => {
   const [{ isLoading, data }] = useDataApi<IUserInfo | undefined>(

@@ -1,48 +1,49 @@
 import React, { ComponentType } from "react";
 import { RouteComponentProps } from "react-router";
+
 import {
-  itemsManager,
-  pageBuildeExisting,
-  portal,
-  profile,
-  workbenchExisting
-} from "routes/routes";
+  itemsManagerRoutePath,
+  pageBuildeExistingRoutePath,
+  portalRoutePath,
+  profileRoutePath,
+  workbenchExistingRoutePath
+} from "@mis/common";
 
 const WelcomePageAsync = React.lazy<ComponentType<RouteComponentProps>>(() =>
-  import("portal/PortalContainer")
+  import("../portal/PortalContainer")
 );
 const ItemsManagerAsync = React.lazy<ComponentType<RouteComponentProps>>(() =>
   import("@mis/useritems")
 );
 const WorkbenchContainerAsync = React.lazy(() =>
-  import("portal/PortalContainer")
+  import("../portal/PortalContainer")
 );
 const PagebuilderContainerAsync = React.lazy(() =>
-  import("portal/PortalContainer")
+  import("../portal/PortalContainer")
 );
 const ProfileContainerAsync = React.lazy(() =>
-  import("profile/ProfileContainer")
+  import("../profile/ProfileContainer")
 );
 
 export const routeComponents = [
   {
     Component: WelcomePageAsync,
-    path: portal
+    path: portalRoutePath
   },
   {
     Component: ItemsManagerAsync,
-    path: itemsManager
+    path: itemsManagerRoutePath
   },
   {
     Component: PagebuilderContainerAsync,
-    path: pageBuildeExisting
+    path: pageBuildeExistingRoutePath
   },
   {
     Component: WorkbenchContainerAsync,
-    path: workbenchExisting
+    path: workbenchExistingRoutePath
   },
   {
     Component: ProfileContainerAsync,
-    path: profile
+    path: profileRoutePath
   }
 ];

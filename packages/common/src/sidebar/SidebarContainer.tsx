@@ -1,5 +1,6 @@
 import React, { ComponentType, FC } from "react";
-import Sidebar from "@mis-common/sidebar/Sidebar";
+
+import Sidebar from "./Sidebar";
 
 interface IProps {
   open: boolean;

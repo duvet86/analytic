@@ -1,16 +1,19 @@
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
+
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import React, { FC } from "react";
 import Toolbar from "@material-ui/core/Toolbar";
-import trimbleLogo from "topbar/trimbleLogo.png";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
-import { makeStyles, Theme } from "@material-ui/core/styles";
-import { ProfileIcon } from "app/icons";
+
+import MenuIcon from "@material-ui/icons/Menu";
+
+import { ProfileIcon } from "@mis/common";
+import trimbleLogo from "./trimbleLogo.png";
 
 interface IProps {
   anchorEl: HTMLElement | undefined;

@@ -1,9 +1,5 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 
-class App extends Component {
-  public render() {
-    return <div>Pippo</div>;
-  }
-}
+const App: FC = () => <div>Pippo</div>;
 
 export default App;

@@ -1,7 +1,8 @@
-import FolderTree from "sidebar/folder/FolderTree";
 import React, { FC } from "react";
-import { IFolderChild, LoadingContainer } from "@mis/common";
-import { useDataApi } from "lib/useDataApi";
+
+import { useDataApi, IFolderChild, LoadingContainer } from "@mis/common";
+
+import FolderTree from "./FolderTree";
 
 interface IProps {
   url: string;

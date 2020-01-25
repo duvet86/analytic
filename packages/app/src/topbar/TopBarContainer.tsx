@@ -1,8 +1,14 @@
 import React, { FC, useState } from "react";
-import TopBar from "topbar/TopBar";
-import { clearToken } from "lib/sessionStorageApi";
-import { login, portal, profile } from "routes/routes";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+
+import {
+  clearToken,
+  loginRoutePath,
+  portalRoutePath,
+  profileRoutePath
+} from "@mis/common";
+
+import TopBar from "./TopBar";
 
 interface IOwnProps {
   handleDrawerOpen: () => void;
@@ -23,18 +29,18 @@ const TopBarContainer: FC<Props> = ({ history, handleDrawerOpen }) => {
 
   const onWelcomePageClickHandler = () => {
     onMenuCloseHandler();
-    history.push(portal);
+    history.push(portalRoutePath);
   };
 
   const onProfileClickHandler = () => {
     onMenuCloseHandler();
-    history.push(profile);
+    history.push(profileRoutePath);
   };
 
   const onLogoutClickHandler = () => {
     onMenuCloseHandler();
     clearToken();
-    history.push(login);
+    history.push(loginRoutePath);
   };
 
   return (

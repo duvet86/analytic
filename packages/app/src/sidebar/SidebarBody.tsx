@@ -1,8 +1,9 @@
 import React, { ChangeEvent, FC } from "react";
-import SidebarFolderTree from "sidebar/SidebarFolderTree";
-import SidebarTabs from "sidebar/SidebarTabs";
-import { IFolderChild } from "@mis/common";
-import { LoadingContainer } from "@mis/common";
+
+import { LoadingContainer, IFolderChild } from "@mis/common";
+
+import SidebarFolderTree from "./SidebarFolderTree";
+import SidebarTabs from "./SidebarTabs";
 
 interface IProps {
   isLoading: boolean;

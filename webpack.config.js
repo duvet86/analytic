@@ -307,7 +307,7 @@ module.exports = (env, argv) => {
         new webpack.DefinePlugin({
           "process.env.production": true
         }),
-      new webpack.NamedModulesPlugin(),
+      // new webpack.NamedModulesPlugin(),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -408,8 +408,7 @@ module.exports = (env, argv) => {
           "!**/?(*.)(spec|test).*",
           "!**/src/setupProxy.*",
           "!**/src/setupTests.*"
-        ],
-        silent: true
+        ]
       }),
       new DuplicatePackageCheckerPlugin()
     ].filter(Boolean),

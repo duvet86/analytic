@@ -1,7 +1,8 @@
-import linksList from "portal/linksList";
-import Portal from "portal/Portal";
 import React, { ChangeEvent, FC, useState } from "react";
 import { RouteComponentProps } from "react-router";
+
+import linksList from "./linksList";
+import Portal from "./Portal";
 
 const PortalContainer: FC<RouteComponentProps> = () => {
   const [searchText, setSearchText] = useState("");

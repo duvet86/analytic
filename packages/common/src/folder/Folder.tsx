@@ -1,13 +1,6 @@
 import React, { FC } from "react";
 
 import Collapse from "@material-ui/core/Collapse";
-import EmptyFolder from "@mis-common/folder/EmptyFolder";
-import ExpandLess from "@material-ui/icons/ExpandMore";
-import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
-import FolderContainer from "@mis-common/folder/FolderContainer";
-import FolderIcon from "@material-ui/icons/Folder";
-import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import Item from "@mis-common/folder/Item";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -15,7 +8,16 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
-import { IFolderChild } from "@mis-common/folder/types";
+import ExpandLess from "@material-ui/icons/ExpandMore";
+import ExpandMore from "@material-ui/icons/KeyboardArrowRight";
+import FolderIcon from "@material-ui/icons/Folder";
+import FolderOpenIcon from "@material-ui/icons/FolderOpen";
+
+import { IFolderChild } from "./types";
+
+import Item from "./Item";
+import FolderContainer from "./FolderContainer";
+import EmptyFolder from "./EmptyFolder";
 
 interface IProps {
   label: string;

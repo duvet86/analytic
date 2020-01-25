@@ -62,12 +62,12 @@
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
-    "skipLibCheck": true,
-    "paths": {
-      "*": ["app/src/*"],
-      "@mis-useritems/*": ["useritems/src/*"],
-      "@mis-common/*": ["common/src/*"]
-    }
+    "skipLibCheck": true
+    // "paths": {
+    //   "*": ["app/src/*"],
+    //   "@mis-useritems/*": ["useritems/src/*"],
+    //   "@mis-common/*": ["common/src/*"]
+    // }
   },
   "include": ["packages/**/src"],
   "exclude": ["node_modules", "packages/**/node_modules"]

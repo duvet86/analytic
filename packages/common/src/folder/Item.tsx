@@ -1,10 +1,12 @@
+import React, { forwardRef, Ref, FC } from "react";
+import { NavLink, NavLinkProps } from "react-router-dom";
+
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import { ItemTypeIds } from "@mis-common/folder/types";
-import { DashboardIcon, DataViewIcon } from "app/icons";
-import React, { forwardRef, Ref, FC } from "react";
-import { NavLink, NavLinkProps } from "react-router-dom";
+
+import { ItemTypeIds } from "./types";
+import { DashboardIcon, DataViewIcon } from "../lib/icons";
 
 interface IProps {
   itemTypeId: ItemTypeIds;

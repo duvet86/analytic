@@ -1,9 +1,10 @@
-import { LoadAsync } from "@mis/common";
-import { routeComponents } from "app/routeComponents";
 import React, { FC } from "react";
 import { RouteComponentProps } from "react-router";
 import { Route, Switch } from "react-router-dom";
-import NotFoundRoute from "routes/NotFoundRoute";
+
+import { LoadAsync, NotFoundRoute } from "@mis/common";
+
+import { routeComponents } from "./routeComponents";
 
 const App: FC = () => (
   <LoadAsync>

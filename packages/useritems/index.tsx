@@ -1,5 +1,6 @@
-import App from "@mis-useritems/App";
 import React from "react";
+
+import App from "./src/App";
 
 export default function MyApp() {
   return <App />;

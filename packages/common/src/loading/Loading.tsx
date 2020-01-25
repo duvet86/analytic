@@ -1,7 +1,9 @@
+import React, { FC } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import BaseLoading from "@mis-common/loading/BaseLoading";
-import React, { FC } from "react";
+
+import BaseLoading from "./BaseLoading";
 
 interface IProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

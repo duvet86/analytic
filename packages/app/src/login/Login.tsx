@@ -1,3 +1,5 @@
+import React, { ChangeEvent, FC, FormEvent, MouseEvent } from "react";
+
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
@@ -8,10 +10,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import React, { ChangeEvent, FC, FormEvent, MouseEvent } from "react";
-import trimbleLogo from "topbar/trimbleLogo.png";
+import trimbleLogo from "../topbar/trimbleLogo.png";
 
 interface IProps {
   isInvalidCredentials: boolean;

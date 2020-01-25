@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "main": "index.ts",
   "author": "luca",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "base-64": "^0.1.0"
+  }
 }

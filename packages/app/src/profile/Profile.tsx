@@ -1,7 +1,9 @@
-import Grid from "@material-ui/core/Grid";
 import React, { FC } from "react";
-import { IUserInfo } from "profile/types";
+
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+
+import { IUserInfo } from "./types";
 
 interface IProps {
   userInfo: IUserInfo;

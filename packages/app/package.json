@@ -10,8 +10,6 @@
   "dependencies": {
     "@mis/common": "^0.0.1",
     "@mis/useritems": "^0.0.1",
-    "base-64": "^0.1.0",
-    "react-router-dom": "^5.0.1",
     "typeface-roboto": "^0.0.75"
   }
 }

@@ -1,6 +1,6 @@
-import history from "lib/history";
-import { getWithJwtAsync } from "lib/http";
-import { clearToken } from "lib/sessionStorageApi";
+import history from "./history";
+import { getWithJwtAsync } from "./http";
+import { clearToken } from "./sessionStorageApi";
 import {
   Dispatch,
   Reducer,
@@ -9,7 +9,7 @@ import {
   useReducer,
   useState
 } from "react";
-import { login } from "routes/routes";
+import { loginRoutePath } from "../routes/routes";
 
 const enum DataFetchActionTypes {
   FETCH_INIT = "FETCH_INIT",
@@ -107,7 +107,7 @@ export const useDataApi = <T>(
       } catch (error) {
         if (error.status === 401) {
           clearToken();
-          history.push(login);
+          history.push(loginRoutePath);
         } else if (!didCancel) {
           dispatch({ type: DataFetchActionTypes.FETCH_FAILURE, error });
           throw new Error(error);
@@ -162,7 +162,7 @@ export const usePromise = <T>(promise: Promise<T>, initialData: T) => {
       } catch (error) {
         if (error.status === 401) {
           clearToken();
-          history.push(login);
+          history.push(loginRoutePath);
         } else if (!didCancel) {
           dispatch({ type: DataFetchActionTypes.FETCH_FAILURE, error });
         }

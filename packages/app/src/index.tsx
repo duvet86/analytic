@@ -1,4 +1,4 @@
-import "index.css";
+import "./index.css";
 import "typeface-roboto";
 
 import React, { ComponentType, lazy } from "react";
@@ -8,25 +8,28 @@ import { Router } from "react-router-dom";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import configureTheme from "lib/configureTheme";
-import history from "lib/history";
 
-import ErrorBoundaryContainer from "errorBoundary/ErrorBoundaryContainer";
+import {
+  history,
+  LoadAsync,
+  AnonymousRoute,
+  AuthenticatedRoute,
+  loginRoutePath,
+  portalRoutePath
+} from "@mis/common";
+import configureTheme from "./lib/configureTheme";
 
-import AnonymousRoute from "routes/AnonymousRoute";
-import AuthenticatedRoute from "routes/AuthenticatedRoute";
-import { login, portal } from "routes/routes";
-import * as serviceWorker from "serviceWorker";
+import ErrorBoundaryContainer from "./errorBoundary/ErrorBoundaryContainer";
 
-import { LoadAsync } from "@mis/common";
+import * as serviceWorker from "./serviceWorker";
 
 const theme = configureTheme();
 
 const LoginContainerAsync = lazy<ComponentType<RouteComponentProps>>(() =>
-  import("login/LoginContainer")
+  import("./login/LoginContainer")
 );
 const AppAsync = lazy<ComponentType<RouteComponentProps>>(() =>
-  import("app/App")
+  import("./app/App")
 );
 
 render(
@@ -36,8 +39,11 @@ render(
       <ErrorBoundaryContainer>
         <LoadAsync>
           <Switch>
-            <AnonymousRoute path={login} component={LoginContainerAsync} />
-            <AuthenticatedRoute path={portal} component={AppAsync} />
+            <AnonymousRoute
+              path={loginRoutePath}
+              component={LoginContainerAsync}
+            />
+            <AuthenticatedRoute path={portalRoutePath} component={AppAsync} />
           </Switch>
         </LoadAsync>
       </ErrorBoundaryContainer>

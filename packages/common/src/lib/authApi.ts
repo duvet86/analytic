@@ -1,6 +1,7 @@
 import { encode } from "base-64";
-import { getAsync } from "lib/http";
-import { getToken } from "lib/sessionStorageApi";
+
+import { getAsync } from "./http";
+import { getToken } from "./sessionStorageApi";
 
 export const getTokenAsync = (
   userName: string,

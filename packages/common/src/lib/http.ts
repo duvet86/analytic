@@ -1,5 +1,5 @@
-import Log from "lib/Log";
-import { getToken } from "lib/sessionStorageApi";
+import Log from "./Log";
+import { getToken } from "./sessionStorageApi";
 
 const getJwtToken = (): string => {
   const tokenInfo = getToken();

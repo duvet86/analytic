@@ -1,7 +1,9 @@
+import React, { FC } from "react";
+
+import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
+
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import React, { FC } from "react";
-import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 
 interface IProps {
   nested: number;

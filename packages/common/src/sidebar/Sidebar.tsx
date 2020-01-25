@@ -1,7 +1,9 @@
-import classNames from "classnames";
-import Drawer from "@material-ui/core/Drawer";
 import React, { ComponentType, FC } from "react";
+import clsx from "clsx";
+
 import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import Drawer from "@material-ui/core/Drawer";
 
 const drawerWidth = 312;
 
@@ -48,10 +50,10 @@ const Sidebar: FC<IProps> = ({ open, SidebarBodyComponent }) => {
 
   return (
     <Drawer
-      className={classNames(classes.drawer, !open && classes.drawerClose)}
+      className={clsx(classes.drawer, !open && classes.drawerClose)}
       variant="permanent"
       classes={{
-        paper: classNames(classes.drawerPaper, !open && classes.drawerClose)
+        paper: clsx(classes.drawerPaper, !open && classes.drawerClose)
       }}
       open={open}
     >

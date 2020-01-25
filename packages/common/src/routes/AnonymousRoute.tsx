@@ -1,8 +1,9 @@
 import React, { FC } from "react";
-import { getTokenFromSession } from "lib/authApi";
-import { IRouteProps } from "routes/types";
 import { Redirect, Route } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
+
+import { getTokenFromSession } from "../lib/authApi";
+import { IRouteProps } from "../routes/types";
 
 const AnonymousRoute: FC<IRouteProps> = ({ component, ...props }) => {
   const boundRender = (routeProps: RouteComponentProps) =>

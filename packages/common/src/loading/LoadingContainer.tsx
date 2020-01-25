@@ -1,7 +1,9 @@
-import BackgroundLoading from "@mis-common/loading/BackgroundLoading";
-import Loading from "@mis-common/loading/Loading";
-import { usePrevious } from "lib/utilsHooks";
 import React, { FC, useEffect, useState } from "react";
+
+import { usePrevious } from "../lib/utilsHooks";
+
+import BackgroundLoading from "./BackgroundLoading";
+import Loading from "./Loading";
 
 interface IProps {
   isLoading: boolean;

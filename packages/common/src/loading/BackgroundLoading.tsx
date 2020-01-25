@@ -1,7 +1,9 @@
+import React, { FC } from "react";
+
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import BaseLoading from "@mis-common/loading/BaseLoading";
-import React, { FC } from "react";
+
+import BaseLoading from "./BaseLoading";
 
 interface IProps {
   isLoading: boolean;

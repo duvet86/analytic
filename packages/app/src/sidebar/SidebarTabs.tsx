@@ -1,8 +1,10 @@
+import React, { ChangeEvent, FC } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import React, { ChangeEvent, FC } from "react";
-import { tabs } from "sidebar/tabs";
+
+import { tabs } from "./tabs";
 
 interface IProps {
   selectedTab: number;

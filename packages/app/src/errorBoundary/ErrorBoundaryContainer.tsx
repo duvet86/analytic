@@ -1,7 +1,9 @@
-import ErrorBoundary from "errorBoundary/ErrorBoundary";
-import Log from "lib/Log";
 import React, { Component } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+
+import { Log } from "@mis/common";
+
+import ErrorBoundary from "./ErrorBoundary";
 
 interface IState {
   error: unknown;

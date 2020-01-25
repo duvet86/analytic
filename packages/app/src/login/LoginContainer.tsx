@@ -1,7 +1,3 @@
-import { LoadingContainer } from "@mis/common";
-import { getTokenAsync } from "lib/authApi";
-import { storeToken } from "lib/sessionStorageApi";
-import Login from "login/Login";
 import React, {
   ChangeEvent,
   FC,
@@ -11,6 +7,10 @@ import React, {
   useState
 } from "react";
 import { RouteComponentProps } from "react-router";
+
+import { getTokenAsync, storeToken, LoadingContainer } from "@mis/common";
+
+import Login from "./Login";
 
 const handleMouseDownPassword = (e: MouseEvent) => {
   e.preventDefault();
