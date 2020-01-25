@@ -32,7 +32,10 @@ module.exports = (env, argv) => {
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
-      require.resolve("style-loader"),
+      isEnvDevelopment && require.resolve("style-loader"),
+      isEnvProduction && {
+        loader: MiniCssExtractPlugin.loader
+      },
       {
         loader: require.resolve("css-loader"),
         options: cssOptions
@@ -59,18 +62,26 @@ module.exports = (env, argv) => {
             // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize()
           ],
-          sourceMap: false
+          sourceMap: true
         }
       }
     ].filter(Boolean);
 
     if (preProcessor) {
-      loaders.push({
-        loader: require.resolve(preProcessor),
-        options: {
-          sourceMap: false
+      loaders.push(
+        {
+          loader: require.resolve("resolve-url-loader"),
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: require.resolve(preProcessor),
+          options: {
+            sourceMap: true
+          }
         }
-      });
+      );
     }
 
     return loaders;
@@ -91,8 +102,8 @@ module.exports = (env, argv) => {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? "static/js/[name].[contenthash:8].js"
-        : isEnvDevelopment && "static/js/[name].bundle.js",
+        ? "static/js/[name].[contenthash:8].chunk.js"
+        : isEnvDevelopment && "static/js/[name].chunk.js",
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
@@ -148,13 +159,6 @@ module.exports = (env, argv) => {
               ascii_only: true
             }
           },
-          // Use multi-process parallel running to improve the build speed
-          // Default number of concurrent runs: os.cpus().length - 1
-          // Disabled on WSL (Windows Subsystem for Linux) due to an issue with Terser
-          // https://github.com/webpack-contrib/terser-webpack-plugin/issues/21
-          parallel: true,
-          // Enable file caching
-          cache: true,
           sourceMap: true
         }),
         // This is only used in production mode
@@ -182,7 +186,9 @@ module.exports = (env, argv) => {
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
-      runtimeChunk: "multiple"
+      runtimeChunk: {
+        name: entrypoint => `runtime-${entrypoint.name}`
+      }
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -215,23 +221,6 @@ module.exports = (env, argv) => {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
-
-        // First, run the linter.
-        // It's important to do this before Babel processes the JS.
-        // {
-        //   test: /\.(js|mjs|jsx|ts|tsx)$/,
-        //   enforce: "pre",
-        //   use: [
-        //     {
-        //       options: {
-        //         cache: true
-        //       },
-        //       loader: require.resolve("eslint-loader")
-        //     }
-        //   ],
-        //   exclude: /node_modules/,
-        //   include: path.resolve(__dirname, "packages")
-        // },
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
@@ -314,12 +303,43 @@ module.exports = (env, argv) => {
           `.${isEnvDevelopment ? "dev" : "prod"}.env`
         )
       }),
+      isEnvProduction &&
+        new webpack.DefinePlugin({
+          "process.env.production": true
+        }),
       new webpack.NamedModulesPlugin(),
       // Generates an `index.html` file with the <script> injected.
-      new HtmlWebpackPlugin({
-        inject: true,
-        template: path.resolve(__dirname, "public/index.html")
-      }),
+      new HtmlWebpackPlugin(
+        Object.assign(
+          {},
+          {
+            inject: true,
+            template: path.resolve(__dirname, "public/index.html")
+          },
+          isEnvProduction
+            ? {
+                minify: {
+                  removeComments: true,
+                  collapseWhitespace: true,
+                  removeRedundantAttributes: true,
+                  useShortDoctype: true,
+                  removeEmptyAttributes: true,
+                  removeStyleLinkTypeAttributes: true,
+                  keepClosingSlash: true,
+                  minifyJS: true,
+                  minifyCSS: true,
+                  minifyURLs: true
+                }
+              }
+            : undefined
+        )
+      ),
+      // Inlines the webpack runtime script. This script is too small to warrant
+      // a network request.
+      // https://github.com/facebook/create-react-app/issues/5358
+      isEnvProduction &&
+        shouldInlineRuntimeChunk &&
+        new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
       // This is necessary to emit hot updates (currently CSS only):
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Watcher doesn't work well if you mistype casing in a path so we use
@@ -327,28 +347,60 @@ module.exports = (env, argv) => {
       // See https://github.com/facebook/create-react-app/issues/240
       isEnvDevelopment && new CaseSensitivePathsPlugin(),
       isEnvProduction &&
-        new webpack.DefinePlugin({
-          "process.env.production": true
-        }),
-      isEnvProduction &&
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
           filename: "static/css/[name].[contenthash:8].css",
           chunkFilename: "static/css/[name].[contenthash:8].chunk.css"
         }),
-      // Generate a manifest file which contains a mapping of all asset filenames
-      // to their corresponding output file so that tools can pick it up without
-      // having to parse `index.html`.
+      // Generate an asset manifest file with the following content:
+      // - "files" key: Mapping of all asset filenames to their corresponding
+      //   output file so that tools can pick it up without having to parse
+      //   `index.html`
+      // - "entrypoints" key: Array of files which are included in `index.html`,
+      //   can be used to reconstruct the HTML if necessary
       new ManifestPlugin({
         fileName: "asset-manifest.json",
-        publicPath
+        publicPath,
+        generate: (seed, files, entrypoints) => {
+          const manifestFiles = files.reduce((manifest, file) => {
+            manifest[file.name] = file.path;
+            return manifest;
+          }, seed);
+          const entrypointFiles = entrypoints.main.filter(
+            fileName => !fileName.endsWith(".map")
+          );
+
+          return {
+            files: manifestFiles,
+            entrypoints: entrypointFiles
+          };
+        }
       }),
+      // Generate a service worker script that will precache, and keep up to date,
+      // the HTML & assets that are part of the Webpack build.
+      isEnvProduction &&
+        new WorkboxWebpackPlugin.GenerateSW({
+          clientsClaim: true,
+          exclude: [/\.map$/, /asset-manifest\.json$/],
+          importWorkboxFrom: "cdn",
+          navigateFallback: publicUrl + "index.html",
+          navigateFallbackBlacklist: [
+            // Exclude URLs starting with /_, as they're likely an API call
+            new RegExp("^/_"),
+            // Exclude any URLs whose last part seems to be a file extension
+            // as they're likely a resource and not a SPA route.
+            // URLs containing a "?" character won't be blacklisted as they're likely
+            // a route with query params (e.g. auth callbacks).
+            new RegExp("/[^/?]+\\.[^/]+$")
+          ]
+        }),
       new ForkTsCheckerWebpackPlugin({
         eslint: true,
+        async: isEnvDevelopment,
+        useTypescriptIncrementalApi: true,
         checkSyntacticErrors: true,
-        async: true,
-        watch: "./packages/root/src/", // optional but improves performance (fewer stat calls),
+        watch: "./packages/app/src/", // optional but improves performance (fewer stat calls),
         reportFiles: [
           "packages/**",
           "!packages/**/node_modules/**",
@@ -356,7 +408,8 @@ module.exports = (env, argv) => {
           "!**/?(*.)(spec|test).*",
           "!**/src/setupProxy.*",
           "!**/src/setupTests.*"
-        ]
+        ],
+        silent: true
       }),
       new DuplicatePackageCheckerPlugin()
     ].filter(Boolean),
